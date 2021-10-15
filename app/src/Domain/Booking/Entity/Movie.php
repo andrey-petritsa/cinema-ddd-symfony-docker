@@ -2,26 +2,23 @@
 
 namespace App\Domain\Booking\Entity;
 
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 
-/** @Entity */
+/** @ORM\Entity */
 class Movie
 {
     /**
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue(strategy="UUID")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="UUID")
      */
     private UuidInterface $id;
 
-    /** @Column(type="string", length=255) */
+    /** @ORM\Column(type="string", length=255) */
     private string $name;
 
-    /** @Column(type="datetime") */
+    /** @ORM\Column(type="datetime") */
     private \DateInterval $duration;
 
     public function __construct(UuidInterface $id, string $name, \DateInterval $duration)
