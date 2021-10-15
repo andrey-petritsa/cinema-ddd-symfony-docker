@@ -2,14 +2,23 @@
 
 namespace App\Domain\Booking\ValueObject;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**  * @ORM\Embeddable */
 class ClientDetails
 {
+    /** @ORM\Column(type = "string", length=255) */
     private string $name;
 
-    public function __construct(string $name, private Phone $phone)
+    /** @Orm\Embedded(class = "Phone") */
+    private Phone $phone;
+
+    public function __construct(string $name, Phone $phone)
     {
         self::assertThatNameNotEmpty($name);
+
         $this->name = $name;
+        $this->phone = $phone;
     }
 
     public static function assertThatNameNotEmpty($name)
