@@ -7,17 +7,47 @@ use App\Domain\Booking\Entity\Movie;
 use App\Domain\Booking\TransferObject\TicketInformation;
 use App\Domain\Booking\ValueObject\ClientDetails;
 use App\Domain\Booking\ValueObject\Phone;
-use Ramsey\Uuid\Nonstandard\Uuid;
+use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
+/** @ORM\Entity */
 class Session
 {
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="integer")
+     */
+    private UuidInterface $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Domain\Booking\Entity\Movie")
+     */
+    private Movie $movie;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private int $numberOfSeats;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private \DateTime $startAt;
+
+    //QUESTION есть ли способ связать эту коллекцию со многими Ticket как отношение
+    // один ко многим? (Одна сессия - одна коллекция биллетов (или много биллетов))
     private TicketCollection $bookedTickets;
 
-    public function __construct(private UuidInterface $id, private Movie $movie, private int $numberOfSeats, private \DateTime $startAt)
+    public function __construct(UuidInterface $id, Movie $movie, int $numberOfSeats, \DateTime $startAt)
     {
         self::assertThatAmountOfSeatsCorrect($numberOfSeats);
 
+        $this->id = $id;
+        $this->movie = $movie;
+        $this->numberOfSeats = $numberOfSeats;
+        $this->startAt = $startAt;
         $this->bookedTickets = new TicketCollection();
     }
 
