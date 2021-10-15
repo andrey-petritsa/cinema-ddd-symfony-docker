@@ -13,6 +13,6 @@ doctrine:
       Booking:
         is_bundle: false
         type: annotation
-        dir: '%kernel.project_dir%/src/Domain/Booking/Entity'
-        prefix: 'App\Domain\Booking\Entity'
+        dir: '%kernel.project_dir%/src/Domain/Booking'
+        prefix: 'App\Domain\Booking'
         alias: Booking
