@@ -19,4 +19,10 @@ class MovieRepository extends ServiceEntityRepository
         $this->entityManager->persist($movie);
         $this->entityManager->flush();
     }
+
+    public function delete(Movie $movie)
+    {
+        $this->entityManager->remove($movie);
+        $this->entityManager->flush();
+    }
 }
