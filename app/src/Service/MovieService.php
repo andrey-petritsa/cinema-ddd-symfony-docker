@@ -12,7 +12,7 @@ class MovieService
     {
     }
 
-    public function createMovie(string $movieName, string $rawMovieDuration)
+    public function publishMovie(string $movieName, string $rawMovieDuration)
     {
         $movieDuration = new \DateInterval($rawMovieDuration);
         $movie = new Movie($movieName, $movieDuration);

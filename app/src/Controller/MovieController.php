@@ -18,7 +18,7 @@ class MovieController extends AbstractController
     public function createMovie(Request $request): Response
     {
         $requestBody = $request->toArray();
-        $movie = $this->movieService->createMovie($requestBody['name'], $requestBody['duration']);
+        $movie = $this->movieService->publishMovie($requestBody['name'], $requestBody['duration']);
 
         return $this->json(['id' => $movie->getId()]);
     }
