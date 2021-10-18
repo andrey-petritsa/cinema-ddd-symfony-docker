@@ -4,6 +4,7 @@ namespace App\Domain\Booking\Entity\Session;
 
 use App\Domain\Booking\ValueObject\ClientDetails;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /** @ORM\Entity */
@@ -11,8 +12,7 @@ class Ticket
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="UUID")
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="uuid")
      */
     private UuidInterface $id;
 
@@ -22,9 +22,9 @@ class Ticket
     /** @Orm\Embedded(class="App\Domain\Booking\ValueObject\ClientDetails") */
     private ClientDetails $clientDetails;
 
-    public function __construct(UuidInterface $id, Session $session, ClientDetails $clientDetails)
+    public function __construct(Session $session, ClientDetails $clientDetails)
     {
-        $this->id = $id;
+        $this->id = Uuid::uuid4();
         $this->session = $session;
         $this->clientDetails = $clientDetails;
     }

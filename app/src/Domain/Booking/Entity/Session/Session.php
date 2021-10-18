@@ -16,8 +16,7 @@ class Session
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="UUID")
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="uuid")
      */
     private UuidInterface $id;
 
@@ -40,11 +39,11 @@ class Session
     // один ко многим? (Одна сессия - одна коллекция биллетов (или много биллетов))
     private TicketCollection $bookedTickets;
 
-    public function __construct(UuidInterface $id, Movie $movie, int $numberOfSeats, \DateTime $startAt)
+    public function __construct(Movie $movie, int $numberOfSeats, \DateTime $startAt)
     {
         self::assertThatAmountOfSeatsCorrect($numberOfSeats);
 
-        $this->id = $id;
+        $this->id = Uuid::uuid4();
         $this->movie = $movie;
         $this->numberOfSeats = $numberOfSeats;
         $this->startAt = $startAt;
@@ -63,7 +62,7 @@ class Session
         $this->assertThatSessionIsNotFull();
 
         $clientDetails = new ClientDetails($ticketInformation->name, new Phone($ticketInformation->phone));
-        $ticket = new Ticket(Uuid::uuid4(), $this, $clientDetails);
+        $ticket = new Ticket($this, $clientDetails);
         $this->bookedTickets->addTicket($ticket);
     }
 

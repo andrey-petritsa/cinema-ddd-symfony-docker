@@ -3,6 +3,7 @@
 namespace App\Domain\Booking\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /** @ORM\Entity */
@@ -10,8 +11,7 @@ class Movie
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="uuid")
      */
     private UuidInterface $id;
 
@@ -21,11 +21,11 @@ class Movie
     /** @ORM\Column(type="datetime") */
     private \DateInterval $duration;
 
-    public function __construct(UuidInterface $id, string $name, \DateInterval $duration)
+    public function __construct(string $name, \DateInterval $duration)
     {
         self::assertThatNameNotEmpty($name);
 
-        $this->id = $id;
+        $this->id = Uuid::uuid4();
         $this->name = $name;
         $this->duration = $duration;
     }
