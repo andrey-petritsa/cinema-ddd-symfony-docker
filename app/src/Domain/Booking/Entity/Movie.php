@@ -23,10 +23,8 @@ class Movie
 
     public function __construct(string $name, \DateInterval $duration)
     {
-        self::assertThatNameNotEmpty($name);
-
         $this->id = Uuid::uuid4();
-        $this->name = $name;
+        $this->setName($name);
         $this->duration = $duration;
     }
 
@@ -45,6 +43,19 @@ class Movie
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setDuration(\DateInterval $duration): void
+    {
+        $this->duration = $duration;
+    }
+
+    public function setName(string $name)
+    {
+        //QUESTION можно ли вынести валидацию в этот метод?
+        self::assertThatNameNotEmpty($name);
+
+        $this->name = $name;
     }
 
     public function getDuration(): \DateInterval
