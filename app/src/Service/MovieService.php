@@ -18,13 +18,8 @@ class MovieService
     {
         $movieDuration = new \DateInterval($rawMovieDuration);
         $movie = new Movie($movieName, $movieDuration);
-        $this->movieRepository->create($movie);
+        $this->movieRepository->save($movie);
 
         return $movie;
-    }
-
-    public function getAllMovies(): array
-    {
-        return $this->movieRepository->findAll();
     }
 }

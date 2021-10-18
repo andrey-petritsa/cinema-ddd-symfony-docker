@@ -14,7 +14,7 @@ class MovieRepository extends ServiceEntityRepository
         parent::__construct($registry, Movie::class);
     }
 
-    public function create(Movie $movie)
+    public function save(Movie $movie)
     {
         $this->entityManager->persist($movie);
         $this->entityManager->flush();
