@@ -18,7 +18,7 @@ class Movie
     /** @ORM\Column(type="string", length=255) */
     private string $name;
 
-    /** @ORM\Column(type="datetime") */
+    /** @ORM\Column(type="dateinterval") */
     private \DateInterval $duration;
 
     public function __construct(string $name, \DateInterval $duration)
