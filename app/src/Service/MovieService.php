@@ -3,12 +3,14 @@
 namespace App\Service;
 
 use App\Domain\Booking\Entity\Movie;
+use App\Repository\MovieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\Uuid;
 
 class MovieService
 {
-    public function __construct(private EntityManagerInterface $entityManager)
+    public function __construct(private MovieRepository $movieRepository)
     {
     }
 
@@ -16,10 +18,13 @@ class MovieService
     {
         $movieDuration = new \DateInterval($rawMovieDuration);
         $movie = new Movie($movieName, $movieDuration);
-
-        $this->entityManager->persist($movie);
-        $this->entityManager->flush();
+        $this->movieRepository->create($movie);
 
         return $movie;
+    }
+
+    public function getAllMovies(): array
+    {
+        return $this->movieRepository->findAll();
     }
 }
