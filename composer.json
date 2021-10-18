@@ -1,0 +1,6 @@
+{
+    "require": {
+        "symfony/serializer": "^5.3",
+        "symfony/messenger": "^5.3"
+    }
+}
