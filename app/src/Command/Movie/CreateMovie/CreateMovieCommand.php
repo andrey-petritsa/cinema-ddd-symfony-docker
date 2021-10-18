@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command\CreateMovie;
+namespace App\Command\Movie\CreateMovie;
 
 class CreateMovieCommand
 {
