@@ -22,9 +22,9 @@ class Ticket
     /** @Orm\Embedded(class="App\Domain\Booking\ValueObject\ClientDetails") */
     private ClientDetails $clientDetails;
 
-    public function __construct(Session $session, ClientDetails $clientDetails)
+    public function __construct(UuidInterface $id, Session $session, ClientDetails $clientDetails)
     {
-        $this->id = Uuid::uuid4();
+        $this->id = $id;
         $this->session = $session;
         $this->clientDetails = $clientDetails;
     }

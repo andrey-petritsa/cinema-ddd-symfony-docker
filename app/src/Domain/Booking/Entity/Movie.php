@@ -21,9 +21,9 @@ class Movie
     /** @ORM\Column(type="dateinterval") */
     private \DateInterval $duration;
 
-    public function __construct(string $name, \DateInterval $duration)
+    public function __construct(UuidInterface $id, string $name, \DateInterval $duration)
     {
-        $this->id = Uuid::uuid4();
+        $this->id = $id;
         $this->setName($name);
         $this->duration = $duration;
     }
