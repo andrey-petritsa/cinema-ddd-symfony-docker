@@ -63,14 +63,8 @@ class Movie
 
     public function setName(string $name)
     {
-        //QUESTION можно ли вынести валидацию в этот метод?
         self::assertThatNameNotEmpty($name);
 
         $this->name = $name;
-    }
-
-    public function getDuration(): \DateInterval
-    {
-        return $this->duration;
     }
 }
