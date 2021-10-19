@@ -71,6 +71,13 @@ class Session
         }
     }
 
+    public function rewrite(Movie $movie, int $numberOfSeats, \DateTime $startAt)
+    {
+        $this->movie = $movie;
+        $this->setNumberOfSeats($numberOfSeats);
+        $this->startAt = $startAt;
+    }
+
     public function getMovieName(): string
     {
         return $this->movie->getName();
