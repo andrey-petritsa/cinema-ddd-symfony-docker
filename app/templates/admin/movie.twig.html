@@ -1,0 +1,9 @@
+<h1 style="text-align: center">Страница управления фильмами кинотеатра</h1>
+
+{% for movie in movies %}
+<li><b>Id</b> {{ movie.id }}</li>
+<li><b>Название фильма</b> {{ movie.name }}</li>
+<!--TODO добавить продолжительность-->
+<li><b>Продолжительность</b> {{ movie.duration|date}}</li>
+<br>
+{% endfor %}
