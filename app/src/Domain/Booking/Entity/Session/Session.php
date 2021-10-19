@@ -102,4 +102,16 @@ class Session
     {
         return $this->movie->getDuration();
     }
+
+    private function setNumberOfSeats($numberOfSeats)
+    {
+        self::assertThatAmountOfSeatsCorrect($numberOfSeats);
+
+        $this->numberOfSeats = $numberOfSeats;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
 }
