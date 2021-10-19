@@ -35,6 +35,12 @@ class Movie
         }
     }
 
+    public function rewrite(string $name, \DateInterval $duration)
+    {
+        $this->setName($name);
+        $this->duration = $duration;
+    }
+
     public function getId(): UuidInterface
     {
         return $this->id;
