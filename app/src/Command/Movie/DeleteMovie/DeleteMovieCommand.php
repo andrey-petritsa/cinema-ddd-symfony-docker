@@ -2,11 +2,20 @@
 
 namespace App\Command\Movie\DeleteMovie;
 
+use Happyr\Validator\Constraint\EntityExist;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class DeleteMovieCommand
 {
-    public function __construct(public UuidInterface $id)
+    /**
+    * @Assert\NotBlank
+    * @EntityExist(entity="App\Domain\Booking\Entity\Movie")
+    */
+    public UuidInterface $id;
+
+    public function __construct(UuidInterface $id)
     {
+        $this->id = $id;
     }
 }

@@ -6,7 +6,15 @@ use App\Domain\Booking\TransferObject\MovieDto;
 
 class CreateMovieCommand
 {
-    public function __construct(public MovieDto $movieDto)
+    public $id;
+    public $name;
+    public $duration;
+
+    public function __construct($id, $name, $duration)
     {
+        $this->id = $id;
+        $this->name = $name;
+        $this->duration = $duration;
     }
+
 }

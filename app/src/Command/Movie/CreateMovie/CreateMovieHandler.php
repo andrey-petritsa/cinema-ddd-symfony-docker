@@ -12,11 +12,10 @@ class CreateMovieHandler implements MessageHandlerInterface
     {
     }
 
-    public function __invoke(CreateMovieCommand $command): Movie
+    public function __invoke(CreateMovieCommand $command)
     {
-        $movie = new Movie($command->movieDto->name, $command->movieDto->duration);
-        $this->movieRepository->save($movie);
+        $movie = new Movie($command->id, $command->name, new \DateInterval($command->duration));
 
-        return $movie;
+        $this->movieRepository->save($movie);
     }
 }
