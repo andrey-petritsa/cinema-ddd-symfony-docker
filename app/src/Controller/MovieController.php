@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Command\Movie\ChangeMovie\ChangeMovieCommand;
 use App\Command\Movie\CreateMovie\CreateMovieCommand;
 use App\Command\Movie\DeleteMovie\DeleteMovieCommand;
-use App\Domain\Booking\TransferObject\MovieDto;
+use App\Domain\Booking\Entity\Movie;
 use App\Repository\MovieRepository;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,15 +25,17 @@ class MovieController extends AbstractController
     }
 
     #[Route('/movie', methods: ['POST'])]
-    public function createMovie(Request $request, MessageBusInterface $bus): Response
+    public function createMovie(Request $request, MovieRepository $movieRepository): Response
     {
         $requestBody = $request->toArray();
 
-        $movieDto = new MovieDto($requestBody['name'], $requestBody['duration']);
-        $createMovieMessage = $this->dispatchMessage(new CreateMovieCommand($movieDto));
-        $movie = $createMovieMessage->last(HandledStamp::class)->getResult();
+        $movieId = Uuid::uuid4();
+        $createMovieCommand = new CreateMovieCommand($movieId, $requestBody['name'], $requestBody['duration']);
+        $this->dispatchMessage($createMovieCommand);
 
-        return new JsonResponse(['id' => $movie->getId()]);
+        $movie = $movieRepository->find($movieId);
+
+        return new JsonResponse($movie->getId());
     }
 
     #[Route('/movie', methods: ['GET'])]
@@ -45,31 +47,31 @@ class MovieController extends AbstractController
         return JsonResponse::fromJsonString($this->serializer->serialize($movies, 'json'));
     }
 
-    #[Route('/movie', methods: ['PUT'])]
-    public function changeMovie(Request $request): Response
+    #[Route('/movie/{id}', methods: ['PUT'])]
+    public function changeMovie(Request $request, Movie $movie): Response
     {
         $requestBody = $request->toArray();
 
-        $requestMovie = new MovieDto($requestBody['name'], $requestBody['duration']);
-        $toChangeMovieId = Uuid::fromString($requestBody['id']);
+        $changeMovieCommand = new ChangeMovieCommand($movie->getId(), $requestBody['name'], $requestBody['duration']);
+        $this->dispatchMessage($changeMovieCommand);
 
-        $changeMovieMessage = $this->dispatchMessage(new ChangeMovieCommand($toChangeMovieId, $requestMovie));
-        $movie = $changeMovieMessage->last(HandledStamp::class)->getResult();
-
-        return new JsonResponse(['id' => $movie->getId()]);
+        return new JsonResponse($movie->getId());
     }
 
-    #[Route('/movie', methods: ['DELETE'])]
-    public function removeMovie(Request $request): Response
+    #[Route('/movie/{id}', methods: ['DELETE'])]
+    public function removeMovie(Movie $movie, MovieRepository $movieRepository): Response
     {
-        $requestBody = $request->toArray();
+        $movieId = $movie->getId();
 
-        $toDeleteMovieId = Uuid::fromString($requestBody['id']);
+        $deleteMovieCommand = new DeleteMovieCommand($movieId);
+        $this->dispatchMessage($deleteMovieCommand);
 
-        $deleteMovieMessage = $this->dispatchMessage(new DeleteMovieCommand($toDeleteMovieId));
-        $movie = $deleteMovieMessage->last(HandledStamp::class)->getResult();
+        $movie = $movieRepository->find($movieId);
 
-        return new JsonResponse(['id' => $movie->getId()]);
+        if (!$movie) {
+            return new JsonResponse($movieId);
+        }
+
+        throw new \Exception('Не удалось удалить фильм');
     }
-
 }
