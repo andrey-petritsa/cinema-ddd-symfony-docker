@@ -56,6 +56,11 @@ class Movie
         $this->duration = $duration;
     }
 
+    public function getDuration(): \DateInterval
+    {
+        return $this->duration;
+    }
+
     public function setName(string $name)
     {
         //QUESTION можно ли вынести валидацию в этот метод?
