@@ -2,6 +2,8 @@
 
 namespace App\Controller\Admin;
 
+use App\Command\Movie\ChangeMovie\ChangeMovieCommand;
+use App\Command\Session\ChangeSession\ChangeSessionCommand;
 use App\Command\Session\CreateSession\CreateSessionCommand;
 use App\Domain\Booking\Entity\Session\Session;
 use App\Form\SessionType;
@@ -36,5 +38,17 @@ class AdminSessionController extends AbstractController
     #[Route('/admin/session/change/{id}', methods: ['GET', 'POST'], name: 'admin_change_session')]
     public function changeSession(Request $request, Session $session): Response
     {
+        $startAt = $session->getStartAt()->format('Y-m-d H:i:s');
+        $changeSessionCommand = new ChangeSessionCommand($session->getId(), $session->getMovie(), $session->getNumberOfSeats(), $startAt);
+        $changeSessionForm = $this->createForm(SessionType::class, $changeSessionCommand);
+        $changeSessionForm->handleRequest($request);
+
+        if ($changeSessionForm->isSubmitted() && $changeSessionForm->isValid()) {
+            $this->dispatchMessage($changeSessionCommand);
+        }
+
+        return $this->renderForm('admin/session/session.change.twig.html', [
+            'changeSessionForm' => $changeSessionForm,
+        ]);
     }
 }
