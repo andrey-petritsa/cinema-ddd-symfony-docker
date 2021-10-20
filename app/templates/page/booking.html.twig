@@ -1,11 +1,2 @@
 <h1>Страница бронирования билетов</h1>
-{% for session in sessions %}
-    <li><b>Свободных мест</b> {{ session.id }}</li>
-    <li><b>Расписание</b> {{ session.startAt|date("h:i") }} - {{ session.getEndAt("h:i")|date("h:i") }}</li>
-    <br>
-{% endfor %}
-<br>
-<br>
-<a href="{{ path('admin_create_movie') }}">На страницу управления фильмами</a>
-<br>
-<a href="{{ path('admin_create_session') }}">На страницу управления сессиями</a>
+{{ form(form) }}

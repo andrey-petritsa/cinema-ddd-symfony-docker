@@ -1,0 +1,21 @@
+<h1>Страница бронирования билетов</h1>
+{% for msg in app.flashes('success') %}
+    <div style="background-color: greenyellow">
+        {{ msg }}
+    </div>
+{% endfor %}
+{% for session in sessions %}
+    <li><b>Свободных мест</b> {{ session.getNumberOfFreeSeats() }}</li>
+    <li><b>Расписание</b> {{ session.startAt|date("h:i") }} - {{ session.getEndAt()|date("h:i") }}</li>
+    <li><b>Дата</b> {{ session.startAt|date("y/m/d") }} </li>
+    {# TODO сделать правильно отображение #}
+    <li><b>Хронометраж</b> {{ session.getMovieDuration()|date("h:i") }} </li>
+    <a href="{{ path('user_book_ticket', {id: session.id}) }}">Забронировать билет</a>
+    <br>
+    <br>
+{% endfor %}
+<br>
+<br>
+<a href="{{ path('admin_create_movie') }}">На страницу управления фильмами</a>
+<br>
+<a href="{{ path('admin_create_session') }}">На страницу управления сессиями</a>
