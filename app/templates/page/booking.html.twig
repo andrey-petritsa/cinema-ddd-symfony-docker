@@ -1,6 +1,7 @@
 <h1>Страница бронирования билетов</h1>
 {% for session in sessions %}
-    {{ session.id }}
+    <li><b>Свободных мест</b> {{ session.id }}</li>
+    <li><b>Расписание</b> {{ session.startAt|date("h:i") }} - {{ session.getEndAt("h:i")|date("h:i") }}</li>
     <br>
 {% endfor %}
 <br>
