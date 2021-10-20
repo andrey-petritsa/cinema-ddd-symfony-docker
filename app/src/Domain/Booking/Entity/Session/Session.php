@@ -60,7 +60,7 @@ class Session
         $this->assertThatSessionIsNotFull();
 
         $clientDetails = new ClientDetails($ticketInformation->name, new Phone($ticketInformation->phone));
-        $ticket = new Ticket($this, $clientDetails);
+        $ticket = new Ticket(Uuid::uuid4(), $this, $clientDetails);
         $this->bookedTickets->addTicket($ticket);
     }
 
