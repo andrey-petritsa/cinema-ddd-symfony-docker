@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Command\Session\ChangeSession;
+namespace App\Command\Crud\Session\ChangeSession;
 
-use App\Domain\Booking\TransferObject\SessionDto;
 use Happyr\Validator\Constraint\EntityExist;
-use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class ChangeSessionCommand

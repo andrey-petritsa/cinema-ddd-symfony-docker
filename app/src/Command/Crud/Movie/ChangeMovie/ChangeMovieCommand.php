@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Command\Movie\ChangeMovie;
+namespace App\Command\Crud\Movie\ChangeMovie;
 
-use App\Domain\Booking\TransferObject\MovieDto;
 use Happyr\Validator\Constraint\EntityExist;
-use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class ChangeMovieCommand

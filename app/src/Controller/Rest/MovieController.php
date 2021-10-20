@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Rest;
 
-use App\Command\Movie\ChangeMovie\ChangeMovieCommand;
-use App\Command\Movie\CreateMovie\CreateMovieCommand;
-use App\Command\Movie\DeleteMovie\DeleteMovieCommand;
+use App\Command\Crud\Movie\ChangeMovie\ChangeMovieCommand;
+use App\Command\Crud\Movie\CreateMovie\CreateMovieCommand;
+use App\Command\Crud\Movie\DeleteMovie\DeleteMovieCommand;
 use App\Domain\Booking\Entity\Movie;
 use App\Repository\MovieRepository;
 use Ramsey\Uuid\Uuid;

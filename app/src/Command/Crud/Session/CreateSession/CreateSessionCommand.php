@@ -1,11 +1,8 @@
 <?php
 
-namespace App\Command\Session\CreateSession;
+namespace App\Command\Crud\Session\CreateSession;
 
-use App\Domain\Booking\Entity\Session\Session;
-use App\Domain\Booking\TransferObject\SessionDto;
 use Happyr\Validator\Constraint\EntityExist;
-use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class CreateSessionCommand

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command\Movie\CreateMovie;
+namespace App\Command\Crud\Movie\CreateMovie;
 
 use App\Domain\Booking\Entity\Movie;
 use App\Repository\MovieRepository;

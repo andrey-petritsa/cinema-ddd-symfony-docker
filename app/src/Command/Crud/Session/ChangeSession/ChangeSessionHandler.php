@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Command\Session\CreateSession;
+namespace App\Command\Crud\Session\ChangeSession;
 
-use App\Domain\Booking\Entity\Session\Session;
 use App\Repository\MovieRepository;
 use App\Repository\SessionRepository;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
-class CreateSessionHandler implements MessageHandlerInterface
+class ChangeSessionHandler implements MessageHandlerInterface
 {
     public function __construct(private SessionRepository $sessionRepository, private MovieRepository $movieRepository)
     {
     }
 
-    public function __invoke(CreateSessionCommand $command)
+    public function __invoke(ChangeSessionCommand $command)
     {
+        $session = $this->sessionRepository->find($command->sessionId);
         $movie = $this->movieRepository->find($command->movieId);
-        $session = new Session($command->sessionId, $movie, $command->numberOfSeats, new \DateTime($command->startAt));
+
+        $session->rewrite($movie, $command->numberOfSeats, new \DateTime($command->startAt));
 
         $this->sessionRepository->save($session);
     }

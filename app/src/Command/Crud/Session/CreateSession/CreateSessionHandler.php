@@ -1,24 +1,22 @@
 <?php
 
-namespace App\Command\Session\ChangeSession;
+namespace App\Command\Crud\Session\CreateSession;
 
 use App\Domain\Booking\Entity\Session\Session;
 use App\Repository\MovieRepository;
 use App\Repository\SessionRepository;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
-class ChangeSessionHandler implements MessageHandlerInterface
+class CreateSessionHandler implements MessageHandlerInterface
 {
     public function __construct(private SessionRepository $sessionRepository, private MovieRepository $movieRepository)
     {
     }
 
-    public function __invoke(ChangeSessionCommand $command)
+    public function __invoke(CreateSessionCommand $command)
     {
-        $session = $this->sessionRepository->find($command->sessionId);
         $movie = $this->movieRepository->find($command->movieId);
-
-        $session->rewrite($movie, $command->numberOfSeats, new \DateTime($command->startAt));
+        $session = new Session($command->sessionId, $movie, $command->numberOfSeats, new \DateTime($command->startAt));
 
         $this->sessionRepository->save($session);
     }

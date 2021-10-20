@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command\Movie\DeleteMovie;
+namespace App\Command\Crud\Movie\DeleteMovie;
 
 use Happyr\Validator\Constraint\EntityExist;
 use Ramsey\Uuid\UuidInterface;

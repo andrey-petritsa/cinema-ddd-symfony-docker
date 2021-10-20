@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Rest;
 
-use App\Command\Session\ChangeSession\ChangeSessionCommand;
-use App\Command\Session\CreateSession\CreateSessionCommand;
-use App\Command\Session\DeleteSession\DeleteSessionCommand;
+use App\Command\Crud\Session\ChangeSession\ChangeSessionCommand;
+use App\Command\Crud\Session\CreateSession\CreateSessionCommand;
+use App\Command\Crud\Session\DeleteSession\DeleteSessionCommand;
 use App\Domain\Booking\Entity\Session\Session;
-use App\Domain\Booking\TransferObject\SessionDto;
 use App\Repository\SessionRepository;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

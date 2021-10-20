@@ -2,10 +2,10 @@
 
 namespace App\Controller\Admin;
 
-use App\Command\Movie\ChangeMovie\ChangeMovieCommand;
-use App\Command\Session\ChangeSession\ChangeSessionCommand;
-use App\Command\Session\CreateSession\CreateSessionCommand;
-use App\Command\Session\DeleteSession\DeleteSessionCommand;
+use App\Command\Crud\Movie\ChangeMovie\ChangeMovieCommand;
+use App\Command\Crud\Session\ChangeSession\ChangeSessionCommand;
+use App\Command\Crud\Session\CreateSession\CreateSessionCommand;
+use App\Command\Crud\Session\DeleteSession\DeleteSessionCommand;
 use App\Domain\Booking\Entity\Session\Session;
 use App\Form\SessionType;
 use App\Repository\MovieRepository;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command\Movie\DeleteMovie;
+namespace App\Command\Crud\Movie\DeleteMovie;
 
 use App\Repository\MovieRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

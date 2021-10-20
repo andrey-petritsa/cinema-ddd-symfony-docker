@@ -1,7 +1,6 @@
 <?php
-namespace App\Command\Session\DeleteSession;
+namespace App\Command\Crud\Session\DeleteSession;
 
-use App\Command\Movie\DeleteMovie\DeleteMovieCommand;
 use App\Repository\SessionRepository;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 

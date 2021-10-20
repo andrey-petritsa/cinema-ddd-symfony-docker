@@ -2,9 +2,9 @@
 
 namespace App\Controller\Admin;
 
-use App\Command\Movie\ChangeMovie\ChangeMovieCommand;
-use App\Command\Movie\CreateMovie\CreateMovieCommand;
-use App\Command\Movie\DeleteMovie\DeleteMovieCommand;
+use App\Command\Crud\Movie\ChangeMovie\ChangeMovieCommand;
+use App\Command\Crud\Movie\CreateMovie\CreateMovieCommand;
+use App\Command\Crud\Movie\DeleteMovie\DeleteMovieCommand;
 use App\Domain\Booking\Entity\Movie;
 use App\Form\MovieType;
 use App\Form\SessionType;

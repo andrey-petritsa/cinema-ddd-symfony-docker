@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Command\Movie\ChangeMovie;
+namespace App\Command\Crud\Movie\ChangeMovie;
 
-use App\Domain\Booking\Entity\Movie;
 use App\Repository\MovieRepository;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 class ChangeMovieHandler implements MessageHandlerInterface

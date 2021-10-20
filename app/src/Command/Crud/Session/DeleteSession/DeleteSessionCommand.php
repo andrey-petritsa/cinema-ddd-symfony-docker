@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Command\Session\DeleteSession;
+namespace App\Command\Crud\Session\DeleteSession;
 
 use Happyr\Validator\Constraint\EntityExist;
-use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class DeleteSessionCommand
