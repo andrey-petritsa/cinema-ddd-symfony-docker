@@ -5,6 +5,9 @@
 <h2>Созданные сессии</h2>
 {% for session in sessions %}
 <li><b>Id</b> {{ session.id }}</li>
+<li><b>Название фильма</b> {{ session.getMovieName() }}</li>
+<li><b>Начало сессии</b> {{ session.getStartAt()|date }}</li>
+<li><b>Конец сессии</b> {{ session.getEndAt()|date }}</li>
 <a href="{{ path('admin_change_session', {id: session.id}) }}">Изменить сессию</a>
 <br>
 <br>
