@@ -110,8 +110,19 @@ class Session
         $this->numberOfSeats = $numberOfSeats;
     }
 
+    public function getNumberOfSeats(): int
+    {
+        return $this->numberOfSeats;
+    }
+
     public function getId()
     {
         return $this->id;
     }
+
+    public function getMovie(): Movie
+    {
+        return $this->movie;
+    }
+
 }
