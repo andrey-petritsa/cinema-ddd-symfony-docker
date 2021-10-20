@@ -13,11 +13,15 @@ use App\Form\MovieType;
 
 class AdminController extends AbstractController
 {
-    #[Route('/admin/movie', methods: ['GET'])]
-    public function index(MovieRepository $movieRepository): Response
+    #[Route('/admin/movie', methods: ['GET', 'POST'])]
+    public function index(Request $request): Response
     {
         $createMovieCommand = new CreateMovieCommand(Uuid::uuid4(), 'Название фильма', "PT2H25M");
         $form = $this->createForm(MovieType::class, $createMovieCommand);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->dispatchMessage($createMovieCommand);
+        }
 
         return $this->renderForm('admin/movie.twig.html', [
             'form' => $form
