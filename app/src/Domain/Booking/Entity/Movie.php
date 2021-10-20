@@ -3,7 +3,6 @@
 namespace App\Domain\Booking\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /** @ORM\Entity */

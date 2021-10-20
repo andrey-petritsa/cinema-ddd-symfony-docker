@@ -2,7 +2,6 @@
 
 namespace App\Repository;
 
-use App\Domain\Booking\Entity\Movie;
 use App\Domain\Booking\Entity\Session\Session;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
