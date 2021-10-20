@@ -12,10 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Messenger\Stamp\HandledStamp;
 
 class MovieController extends AbstractController
 {
@@ -30,7 +28,9 @@ class MovieController extends AbstractController
         $requestBody = $request->toArray();
 
         $movieId = Uuid::uuid4();
-        $createMovieCommand = new CreateMovieCommand($movieId, $requestBody['name'], $requestBody['duration']);
+        $createMovieCommand = new CreateMovieCommand($movieId);
+        $createMovieCommand->name = $requestBody['name'];
+        $createMovieCommand->duration = $requestBody['duration'];
         $this->dispatchMessage($createMovieCommand);
 
         $movie = $movieRepository->find($movieId);
@@ -39,7 +39,7 @@ class MovieController extends AbstractController
     }
 
     #[Route('/movie', methods: ['GET'])]
-    public function getMovies(Request $request, MovieRepository $movieRepository): Response
+    public function getMovies(MovieRepository $movieRepository): Response
     {
         $movies = $movieRepository->findAll();
 
@@ -51,7 +51,11 @@ class MovieController extends AbstractController
     {
         $requestBody = $request->toArray();
 
-        $changeMovieCommand = new ChangeMovieCommand($movie->getId(), $requestBody['name'], $requestBody['duration']);
+        $changeMovieCommand = new ChangeMovieCommand($movie->getId());
+
+        $changeMovieCommand->name = $requestBody['name'];
+        $changeMovieCommand->duration = $requestBody['duration'];
+
         $this->dispatchMessage($changeMovieCommand);
 
         return new JsonResponse($movie->getId());

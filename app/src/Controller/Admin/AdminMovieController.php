@@ -7,7 +7,6 @@ use App\Command\Crud\Movie\CreateMovie\CreateMovieCommand;
 use App\Command\Crud\Movie\DeleteMovie\DeleteMovieCommand;
 use App\Domain\Booking\Entity\Movie;
 use App\Form\MovieType;
-use App\Form\SessionType;
 use App\Repository\MovieRepository;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,10 +16,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminMovieController extends AbstractController
 {
-    #[Route('/admin/movie/create', methods: ['GET', 'POST'], name: "admin_create_movie")]
+    #[Route('/admin/movie/create', name: "admin_create_movie", methods: ['GET', 'POST'])]
     public function createMovie(Request $request, MovieRepository $movieRepository): Response
     {
-        $createMovieCommand = new CreateMovieCommand(Uuid::uuid4(), 'Название фильма', "PT2H25M");
+        $createMovieCommand = new CreateMovieCommand(Uuid::uuid4());
         $createMovieForm = $this->createForm(MovieType::class, $createMovieCommand);
         $createMovieForm->handleRequest($request);
 
@@ -34,10 +33,10 @@ class AdminMovieController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/movie/change/{id}', methods: ['GET', 'POST'], name: 'admin_change_movie')]
+    #[Route('/admin/movie/change/{id}', name: 'admin_change_movie', methods: ['GET', 'POST'])]
     public function changeMovie(Request $request, Movie $movie): Response
     {
-        $changeMovieCommand = new ChangeMovieCommand($movie->getId(), $movie->getName(), $movie->getDuration()->format('PT%hH%iM'));
+        $changeMovieCommand = new ChangeMovieCommand($movie->getId());
         $changeMovieForm = $this->createForm(MovieType::class, $changeMovieCommand);
         $changeMovieForm->handleRequest($request);
 
@@ -50,8 +49,8 @@ class AdminMovieController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/movie/delete/{id}', methods: ['GET', 'POST'], name: 'admin_delete_movie')]
-    public function deleteMovie(Movie $movie)
+    #[Route('/admin/movie/delete/{id}', name: 'admin_delete_movie', methods: ['GET', 'POST'])]
+    public function deleteMovie(Movie $movie): Response
     {
         $deleteMovieCommand = new DeleteMovieCommand($movie->getId());
         $this->dispatchMessage($deleteMovieCommand);

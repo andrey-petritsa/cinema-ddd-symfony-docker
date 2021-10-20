@@ -14,16 +14,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookingPageController extends AbstractController
 {
     //QUESTION можно ли было сделать как в макете? Форму на этой же странице
-    #[Route('/', methods: ['GET'], name: 'user_show_sessions')]
-    public function index(Request $request, SessionRepository $sessionRepository): Response
+    #[Route('/', name: 'user_show_sessions', methods: ['GET'])]
+    public function index(SessionRepository $sessionRepository): Response
     {
         return $this->render('page/index.html.twig', [
             'sessions' => $sessionRepository->findAll(),
         ]);
     }
 
-    #[Route('/session/book/{id}', methods: ['GET', 'POST'], name: 'user_book_ticket')]
-    public function bookPage(Session $session, Request $request)
+    #[Route('/session/book/{id}', name: 'user_book_ticket', methods: ['GET', 'POST'])]
+    public function bookPage(Session $session, Request $request): Response
     {
         $bookTicketCommand = new BookTicketCommand($session->getId());
         $form = $this->createForm(UserType::class, $bookTicketCommand);
@@ -32,6 +32,7 @@ class BookingPageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->dispatchMessage($bookTicketCommand);
             $this->addFlash('success', 'Билет был зарезервирован');
+
             return $this->redirectToRoute('user_show_sessions');
         }
 

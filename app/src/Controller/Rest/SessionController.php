@@ -12,13 +12,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Messenger\Stamp\HandledStamp;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SessionController extends AbstractController
 {
     #[Route('/session', methods: ['GET'])]
-    public function getSessions(Request $request, SessionRepository $sessionRepository): Response
+    public function getSessions(SessionRepository $sessionRepository): Response
     {
         $sessions = $sessionRepository->findAll();
 
@@ -31,7 +30,11 @@ class SessionController extends AbstractController
         $requestBody = $request->toArray();
 
         $sessionId = Uuid::uuid4();
-        $createSessionCommand = new CreateSessionCommand($sessionId, $requestBody['movieId'], $requestBody['numberOfSeats'], $requestBody['startAt']);
+
+        $createSessionCommand = new CreateSessionCommand($sessionId);
+        $createSessionCommand->movieId = $requestBody['movieId'];
+        $createSessionCommand->numberOfSeats = $requestBody['numberOfSeats'];
+        $createSessionCommand->startAt = $requestBody['startAt'];
         $this->dispatchMessage($createSessionCommand);
 
         $session = $sessionRepository->find($sessionId);
@@ -44,7 +47,11 @@ class SessionController extends AbstractController
     {
         $requestBody = $request->toArray();
 
-        $changeSessionCommand = new ChangeSessionCommand($session->getId(), $requestBody['movieId'], $requestBody['numberOfSeats'], $requestBody['startAt']);
+        $changeSessionCommand = new ChangeSessionCommand($session->getId());
+        $changeSessionCommand->movieId = $requestBody['movieId'];
+        $changeSessionCommand->numberOfSeats = $requestBody['numberOfSeats'];
+        $changeSessionCommand->startAt = $requestBody['startAt'];
+
         $this->dispatchMessage($changeSessionCommand);
 
         return new JsonResponse($session->getId());
