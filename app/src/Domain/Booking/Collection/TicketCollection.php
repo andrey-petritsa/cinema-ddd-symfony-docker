@@ -3,10 +3,14 @@
 namespace App\Domain\Booking\Collection;
 
 use App\Domain\Booking\Entity\Session\Ticket;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 class TicketCollection implements \IteratorAggregate, \Countable
 {
-    private array $tickets = [];
+    public function __construct(private array $tickets)
+    {
+    }
 
     public function getIterator(): TicketIterator
     {
@@ -26,5 +30,10 @@ class TicketCollection implements \IteratorAggregate, \Countable
     public function count(): int
     {
         return count($this->tickets);
+    }
+
+    public static function fromDoctrineCollection(Collection $collection)
+    {
+        return new TicketCollection($collection->toArray());
     }
 }

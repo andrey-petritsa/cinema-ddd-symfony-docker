@@ -4,7 +4,6 @@ namespace App\Domain\Booking\Entity\Session;
 
 use App\Domain\Booking\ValueObject\ClientDetails;
 use Doctrine\ORM\Mapping as ORM;
-use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 /** @ORM\Entity */
@@ -16,7 +15,7 @@ class Ticket
      */
     private UuidInterface $id;
 
-    /** @ORM\ManyToOne(targetEntity="Session") */
+    /** @ORM\ManyToOne(targetEntity="Session", inversedBy="tickets") */
     private Session $session;
 
     /** @Orm\Embedded(class="App\Domain\Booking\ValueObject\ClientDetails") */

@@ -7,6 +7,8 @@ use App\Domain\Booking\Entity\Movie;
 use App\Domain\Booking\TransferObject\TicketInformation;
 use App\Domain\Booking\ValueObject\ClientDetails;
 use App\Domain\Booking\ValueObject\Phone;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -35,9 +37,10 @@ class Session
      */
     private \DateTime $startAt;
 
-    //QUESTION есть ли способ связать эту коллекцию со многими Ticket как отношение
-    // один ко многим? (Одна сессия - одна коллекция биллетов (или много биллетов))
-    private TicketCollection $bookedTickets;
+    /**
+     * @ORM\OneToMany(targetEntity="App\Domain\Booking\Entity\Session\Ticket", mappedBy="session", cascade={"persist", "remove"})
+     */
+    private Collection $bookedTickets;
 
     public function __construct(UuidInterface $id, Movie $movie, int $numberOfSeats, \DateTime $startAt)
     {
@@ -45,7 +48,7 @@ class Session
         $this->movie = $movie;
         $this->setNumberOfSeats($numberOfSeats);
         $this->startAt = $startAt;
-        $this->bookedTickets = new TicketCollection();
+        $this->bookedTickets = new ArrayCollection();
     }
 
     public static function assertThatAmountOfSeatsCorrect(int $numberOfSeats)
@@ -61,7 +64,7 @@ class Session
 
         $clientDetails = new ClientDetails($ticketInformation->name, new Phone($ticketInformation->phone));
         $ticket = new Ticket(Uuid::uuid4(), $this, $clientDetails);
-        $this->bookedTickets->addTicket($ticket);
+        $this->bookedTickets->add($ticket);
     }
 
     public function assertThatSessionIsNotFull()
@@ -123,6 +126,11 @@ class Session
     public function getMovie(): Movie
     {
         return $this->movie;
+    }
+
+    public function getBookedTickets(): TicketCollection
+    {
+        return TicketCollection::fromDoctrineCollection($this->bookedTickets);
     }
 
 }
