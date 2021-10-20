@@ -1,0 +1,11 @@
+<h1 style="text-align: center">Страница управления сессиями кинотеатра</h1>
+<h2>Форма создания сессии</h2>
+{{form(createSessionForm)}}
+<hr>
+<h2>Созданные сессии</h2>
+{% for session in sessions %}
+<li><b>Id</b> {{ session.id }}</li>
+<a href="{{ path('admin_change_session', {id: session.id}) }}">Изменить сессию</a>
+<br>
+<br>
+{% endfor %}
