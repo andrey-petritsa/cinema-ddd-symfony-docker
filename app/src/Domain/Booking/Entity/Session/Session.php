@@ -118,7 +118,7 @@ class Session
         return $this->numberOfSeats;
     }
 
-    public function getId()
+    public function getId(): UuidInterface
     {
         return $this->id;
     }
