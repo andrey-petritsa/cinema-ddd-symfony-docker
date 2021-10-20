@@ -19,11 +19,8 @@ class CreateSessionCommand
 
     public $startAt;
 
-    public function __construct($sessionId, $movieId, $numberOfSeats, $startAt)
+    public function __construct($sessionId)
     {
         $this->sessionId = $sessionId;
-        $this->movieId = $movieId;
-        $this->numberOfSeats = $numberOfSeats;
-        $this->startAt = $startAt;
     }
 }
