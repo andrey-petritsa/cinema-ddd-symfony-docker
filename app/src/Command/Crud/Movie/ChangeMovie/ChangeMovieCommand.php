@@ -15,11 +15,9 @@ class ChangeMovieCommand
     public $name;
     public $duration;
 
-    public function __construct($id, $name, $duration)
+    public function __construct($id)
     {
         $this->id = $id;
-        $this->name = $name;
-        $this->duration = $duration;
     }
 
 }

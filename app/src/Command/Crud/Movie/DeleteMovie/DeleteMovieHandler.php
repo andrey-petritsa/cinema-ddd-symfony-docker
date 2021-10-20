@@ -3,7 +3,6 @@
 namespace App\Command\Crud\Movie\DeleteMovie;
 
 use App\Repository\MovieRepository;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 class DeleteMovieHandler implements MessageHandlerInterface
