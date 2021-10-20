@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\Stamp\HandledStamp;
 use Symfony\Component\Routing\Annotation\Route;
 
-//TODO добавить сериализации
 class SessionController extends AbstractController
 {
     #[Route('/session', methods: ['GET'])]

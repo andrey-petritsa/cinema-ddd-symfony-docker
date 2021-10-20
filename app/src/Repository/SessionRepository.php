@@ -10,7 +10,6 @@ use Doctrine\Persistence\ManagerRegistry;
 
 class SessionRepository extends ServiceEntityRepository
 {
-    //TODO Разобраться, сработает ли TicketCollection. Скорее всего нет.
     public function __construct(ManagerRegistry $registry, private EntityManagerInterface $entityManager)
     {
         parent::__construct($registry, Session::class);

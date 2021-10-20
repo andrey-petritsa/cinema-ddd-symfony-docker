@@ -20,8 +20,6 @@ class AdminMovieController extends AbstractController
     #[Route('/admin/movie/create', methods: ['GET', 'POST'], name: "admin_create_movie")]
     public function createMovie(Request $request, MovieRepository $movieRepository): Response
     {
-        //QUESTION есть ли способ не инициализировать значения команды? Нужно отказаться от конструктора в пользу простого обращения
-        // к public значениям?
         $createMovieCommand = new CreateMovieCommand(Uuid::uuid4(), 'Название фильма', "PT2H25M");
         $createMovieForm = $this->createForm(MovieType::class, $createMovieCommand);
         $createMovieForm->handleRequest($request);

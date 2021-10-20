@@ -43,7 +43,6 @@ class MovieController extends AbstractController
     {
         $movies = $movieRepository->findAll();
 
-        //TODO serialize movie with Symfony\Component\Serializer\Normalizer\DateIntervalNormalizer?
         return JsonResponse::fromJsonString($this->serializer->serialize($movies, 'json'));
     }
 
