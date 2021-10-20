@@ -21,7 +21,7 @@ class ClientDetails
         $this->phone = $phone;
     }
 
-    public static function assertThatNameNotEmpty($name)
+    private static function assertThatNameNotEmpty($name)
     {
         if (empty($name)) {
             throw new \InvalidArgumentException('Имя не может быть пустым');
