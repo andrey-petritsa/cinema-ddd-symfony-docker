@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Command\Movie\ChangeMovie\ChangeMovieCommand;
 use App\Command\Session\ChangeSession\ChangeSessionCommand;
 use App\Command\Session\CreateSession\CreateSessionCommand;
+use App\Command\Session\DeleteSession\DeleteSessionCommand;
 use App\Domain\Booking\Entity\Session\Session;
 use App\Form\SessionType;
 use App\Repository\MovieRepository;
@@ -50,5 +51,14 @@ class AdminSessionController extends AbstractController
         return $this->renderForm('admin/session/session.change.twig.html', [
             'changeSessionForm' => $changeSessionForm,
         ]);
+    }
+
+    #[Route( '/admin/session/delete/{id}', methods: ['GET'], name: 'admin_delete_session' )]
+    public function deleteSession(Request $request, Session $session): Response
+    {
+        $deleteSessionCommand = new DeleteSessionCommand($session->getId());
+        $this->dispatchMessage($deleteSessionCommand);
+
+        return $this->redirectToRoute('admin_create_session');
     }
 }

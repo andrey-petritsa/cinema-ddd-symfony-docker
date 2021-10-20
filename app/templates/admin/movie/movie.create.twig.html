@@ -9,6 +9,7 @@
 <!--TODO добавить продолжительность-->
 <li><b>Продолжительность</b> {{ movie.duration|date}}</li>
 <a href="{{ path('admin_change_movie', {id: movie.id}) }}">Изменить фильм</a>
+<a href="{{ path('admin_delete_movie', {id: movie.id}) }}">Удалить фильм</a>
 <br>
 <br>
 {% endfor %}

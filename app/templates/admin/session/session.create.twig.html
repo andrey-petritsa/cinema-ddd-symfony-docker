@@ -10,6 +10,7 @@
 <li><b>Конец сессии</b> {{ session.getEndAt()|date }}</li>
 <li><b>Всего мест</b> {{ session.numberOfSeats }}</li>
 <a href="{{ path('admin_change_session', {id: session.id}) }}">Изменить сессию</a>
+<a href="{{ path('admin_delete_session', {id: session.id}) }}">Удалить сессию</a>
 <br>
 <br>
 {% endfor %}

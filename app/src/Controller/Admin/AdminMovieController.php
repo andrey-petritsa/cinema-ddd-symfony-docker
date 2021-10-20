@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Command\Movie\ChangeMovie\ChangeMovieCommand;
 use App\Command\Movie\CreateMovie\CreateMovieCommand;
+use App\Command\Movie\DeleteMovie\DeleteMovieCommand;
 use App\Domain\Booking\Entity\Movie;
 use App\Form\MovieType;
 use App\Form\SessionType;
@@ -49,5 +50,14 @@ class AdminMovieController extends AbstractController
         return $this->renderForm('admin/movie/movie.change.twig.html', [
             'changeMovieForm' => $changeMovieForm
         ]);
+    }
+
+    #[Route('/admin/movie/delete/{id}', methods: ['GET', 'POST'], name: 'admin_delete_movie')]
+    public function deleteMovie(Movie $movie)
+    {
+        $deleteMovieCommand = new DeleteMovieCommand($movie->getId());
+        $this->dispatchMessage($deleteMovieCommand);
+
+        return $this->redirectToRoute('admin_create_movie');
     }
 }
