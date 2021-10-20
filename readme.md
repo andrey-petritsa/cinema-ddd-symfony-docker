@@ -15,3 +15,16 @@
 
 Порт mysql проброшен на 3306. К нему можно подключиться инструментом
 для работы с БД вроде datagrip
+
+Установка зависимостей происходит следующей командой
+
+`` docker-compose exec composer install ``
+
+Подготовка базы данных для работы происходит по следующему алгоритму (нужно 
+содать миграци)
+
+``docker-compose exec bin/console make:migration``
+
+Потом применить их к базе данных
+
+`docker-compose exec docker:migrations:migrate`
