@@ -1,4 +1,0 @@
-services:
-  Happyr\Validator\Constraint\EntityExistValidator:
-    arguments: ['@doctrine.orm.entity_manager']
-    tags: [ 'validator.constraint_validator' ]
