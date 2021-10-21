@@ -15,7 +15,5 @@ class DeleteMovieHandler implements MessageHandlerInterface
     {
         $movie = $this->movieRepository->find($command->movieId);
         $this->movieRepository->delete($movie);
-
-        return $movie;
     }
 }

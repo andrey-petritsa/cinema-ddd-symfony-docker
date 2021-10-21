@@ -14,6 +14,7 @@ class DeleteSessionHandler implements MessageHandlerInterface
     public function __invoke(DeleteSessionCommand $command)
     {
         $session = $this->sessionRepository->find($command->sessionId);
+
         $this->sessionRepository->delete($session);
     }
 }
