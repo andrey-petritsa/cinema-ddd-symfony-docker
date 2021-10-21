@@ -11,10 +11,10 @@ class DeleteMovieCommand
      * @Assert\NotBlank
      * @EntityExist(entity="App\Domain\Booking\Entity\Movie")
      */
-    public $id;
+    public $movieId;
 
     public function __construct($id)
     {
-        $this->id = $id;
+        $this->movieId = $id;
     }
 }

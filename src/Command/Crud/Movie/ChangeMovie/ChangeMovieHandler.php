@@ -13,7 +13,7 @@ class ChangeMovieHandler implements MessageHandlerInterface
 
     public function __invoke(ChangeMovieCommand $command)
     {
-        $movie = $this->movieRepository->find($command->id);
+        $movie = $this->movieRepository->find($command->movieId);
         $movie->setName($command->name);
         $movie->setDuration(new \DateInterval($command->duration));
 

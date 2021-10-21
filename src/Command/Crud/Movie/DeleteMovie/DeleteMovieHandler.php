@@ -13,7 +13,7 @@ class DeleteMovieHandler implements MessageHandlerInterface
 
     public function __invoke(DeleteMovieCommand $command)
     {
-        $movie = $this->movieRepository->find($command->id);
+        $movie = $this->movieRepository->find($command->movieId);
         $this->movieRepository->delete($movie);
 
         return $movie;

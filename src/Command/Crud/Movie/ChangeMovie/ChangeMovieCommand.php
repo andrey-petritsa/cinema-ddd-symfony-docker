@@ -11,7 +11,7 @@ class ChangeMovieCommand
      * @Assert\NotBlank
      * @EntityExist(entity="App\Domain\Booking\Entity\Movie")
      * */
-    public $id;
+    public $movieId;
 
     /**
      * @Assert\NotBlank
@@ -25,6 +25,6 @@ class ChangeMovieCommand
 
     public function __construct($id)
     {
-        $this->id = $id;
+        $this->movieId = $id;
     }
 }
