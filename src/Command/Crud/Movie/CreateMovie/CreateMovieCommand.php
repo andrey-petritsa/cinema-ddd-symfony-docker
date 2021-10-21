@@ -6,7 +6,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class CreateMovieCommand
 {
-    public $id;
+    /**
+     * @Assert\NotBlank
+     **/
+    public $movieId;
 
     /**
      * @Assert\NotBlank
@@ -22,6 +25,6 @@ class CreateMovieCommand
 
     public function __construct($id)
     {
-        $this->id = $id;
+        $this->movieId = $id;
     }
 }

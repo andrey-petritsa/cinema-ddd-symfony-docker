@@ -14,7 +14,7 @@ class CreateMovieHandler implements MessageHandlerInterface
 
     public function __invoke(CreateMovieCommand $command)
     {
-        $movie = new Movie($command->id, $command->name, new \DateInterval($command->duration));
+        $movie = new Movie($command->movieId, $command->name, new \DateInterval($command->duration));
 
         $this->movieRepository->save($movie);
     }

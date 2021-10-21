@@ -7,6 +7,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class CreateSessionCommand
 {
+    /**
+     * @Assert\NotBlank
+     **/
     public $sessionId;
 
     /**
