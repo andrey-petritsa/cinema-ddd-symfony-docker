@@ -12,5 +12,4 @@ class CreateMovieCommand
     {
         $this->id = $id;
     }
-
 }

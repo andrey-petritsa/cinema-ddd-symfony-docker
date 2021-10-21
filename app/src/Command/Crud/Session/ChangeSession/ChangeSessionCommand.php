@@ -27,5 +27,4 @@ class ChangeSessionCommand
     {
         $this->sessionId = $sessionId;
     }
-
 }

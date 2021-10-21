@@ -38,7 +38,8 @@ class Session
     private \DateTime $startAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Domain\Booking\Entity\Session\Ticket", mappedBy="session", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Domain\Booking\Entity\Session\Ticket",
+     * mappedBy="session", cascade={"persist", "remove"})
      */
     private Collection $bookedTickets;
 
@@ -132,5 +133,4 @@ class Session
     {
         return TicketCollection::fromDoctrineCollection($this->bookedTickets);
     }
-
 }

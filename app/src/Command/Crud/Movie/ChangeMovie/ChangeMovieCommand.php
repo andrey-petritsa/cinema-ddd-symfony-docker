@@ -19,5 +19,4 @@ class ChangeMovieCommand
     {
         $this->id = $id;
     }
-
 }
