@@ -40,6 +40,13 @@ class Movie
         $this->duration = $duration;
     }
 
+    private function setName(string $name)
+    {
+        self::assertThatNameNotEmpty($name);
+
+        $this->name = $name;
+    }
+
     public function getId(): UuidInterface
     {
         return $this->id;
@@ -50,20 +57,8 @@ class Movie
         return $this->name;
     }
 
-    public function setDuration(\DateInterval $duration): void
-    {
-        $this->duration = $duration;
-    }
-
     public function getDuration(): \DateInterval
     {
         return $this->duration;
-    }
-
-    public function setName(string $name)
-    {
-        self::assertThatNameNotEmpty($name);
-
-        $this->name = $name;
     }
 }
