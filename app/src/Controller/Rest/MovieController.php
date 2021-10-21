@@ -69,9 +69,9 @@ class MovieController extends AbstractController
         $deleteMovieCommand = new DeleteMovieCommand($movieId);
         $this->dispatchMessage($deleteMovieCommand);
 
-        $movie = $movieRepository->find($movieId);
+        $deletedMovie = $movieRepository->find($movieId);
 
-        if (!$movie) {
+        if (!$deletedMovie) {
             return new JsonResponse($movieId);
         }
 

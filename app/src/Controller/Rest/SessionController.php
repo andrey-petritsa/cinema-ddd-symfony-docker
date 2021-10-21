@@ -64,9 +64,9 @@ class SessionController extends AbstractController
         $deleteSessionCommand = new DeleteSessionCommand($sessionId);
         $this->dispatchMessage($deleteSessionCommand);
 
-        $session = $sessionRepository->find($sessionId);
+        $deletedSession = $sessionRepository->find($sessionId);
 
-        if (!$session) {
+        if (!$deletedSession) {
             return new JsonResponse($sessionId);
         }
 
