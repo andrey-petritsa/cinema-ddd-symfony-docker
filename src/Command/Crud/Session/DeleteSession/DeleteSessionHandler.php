@@ -2,7 +2,7 @@
 
 namespace App\Command\Crud\Session\DeleteSession;
 
-use App\Repository\SessionRepository;
+use App\Domain\Booking\Repository\SessionRepository;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 class DeleteSessionHandler implements MessageHandlerInterface

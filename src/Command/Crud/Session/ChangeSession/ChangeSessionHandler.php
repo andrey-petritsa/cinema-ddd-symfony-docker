@@ -2,8 +2,8 @@
 
 namespace App\Command\Crud\Session\ChangeSession;
 
-use App\Repository\MovieRepository;
-use App\Repository\SessionRepository;
+use App\Domain\Booking\Repository\MovieRepository;
+use App\Domain\Booking\Repository\SessionRepository;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 class ChangeSessionHandler implements MessageHandlerInterface

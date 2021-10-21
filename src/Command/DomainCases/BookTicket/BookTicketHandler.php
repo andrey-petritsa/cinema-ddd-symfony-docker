@@ -2,8 +2,8 @@
 
 namespace App\Command\DomainCases\BookTicket;
 
+use App\Domain\Booking\Repository\SessionRepository;
 use App\Domain\Booking\TransferObject\TicketInformation;
-use App\Repository\SessionRepository;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 class BookTicketHandler implements MessageHandlerInterface

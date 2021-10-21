@@ -3,7 +3,7 @@
 namespace App\Command\Crud\Movie\CreateMovie;
 
 use App\Domain\Booking\Entity\Movie;
-use App\Repository\MovieRepository;
+use App\Domain\Booking\Repository\MovieRepository;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 class CreateMovieHandler implements MessageHandlerInterface

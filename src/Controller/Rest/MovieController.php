@@ -6,7 +6,7 @@ use App\Command\Crud\Movie\ChangeMovie\ChangeMovieCommand;
 use App\Command\Crud\Movie\CreateMovie\CreateMovieCommand;
 use App\Command\Crud\Movie\DeleteMovie\DeleteMovieCommand;
 use App\Domain\Booking\Entity\Movie;
-use App\Repository\MovieRepository;
+use App\Domain\Booking\Repository\MovieRepository;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;

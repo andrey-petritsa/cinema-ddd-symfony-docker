@@ -2,7 +2,7 @@
 
 namespace App\Command\Crud\Movie\ChangeMovie;
 
-use App\Repository\MovieRepository;
+use App\Domain\Booking\Repository\MovieRepository;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 class ChangeMovieHandler implements MessageHandlerInterface

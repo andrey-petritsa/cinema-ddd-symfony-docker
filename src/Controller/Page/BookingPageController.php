@@ -4,8 +4,8 @@ namespace App\Controller\Page;
 
 use App\Command\DomainCases\BookTicket\BookTicketCommand;
 use App\Domain\Booking\Entity\Session\Session;
+use App\Domain\Booking\Repository\SessionRepository;
 use App\Form\UserType;
-use App\Repository\SessionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

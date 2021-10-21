@@ -6,7 +6,7 @@ use App\Command\Crud\Session\ChangeSession\ChangeSessionCommand;
 use App\Command\Crud\Session\CreateSession\CreateSessionCommand;
 use App\Command\Crud\Session\DeleteSession\DeleteSessionCommand;
 use App\Domain\Booking\Entity\Session\Session;
-use App\Repository\SessionRepository;
+use App\Domain\Booking\Repository\SessionRepository;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;

@@ -1,28 +1,28 @@
 <?php
 
-namespace App\Repository;
+namespace App\Domain\Booking\Repository;
 
-use App\Domain\Booking\Entity\Session\Session;
+use App\Domain\Booking\Entity\Movie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
-class SessionRepository extends ServiceEntityRepository
+class MovieRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry, private EntityManagerInterface $entityManager)
     {
-        parent::__construct($registry, Session::class);
+        parent::__construct($registry, Movie::class);
     }
 
-    public function save(Session $session)
+    public function save(Movie $movie)
     {
-        $this->entityManager->persist($session);
+        $this->entityManager->persist($movie);
         $this->entityManager->flush();
     }
 
-    public function delete(Session $session)
+    public function delete(Movie $movie)
     {
-        $this->entityManager->remove($session);
+        $this->entityManager->remove($movie);
         $this->entityManager->flush();
     }
 }
