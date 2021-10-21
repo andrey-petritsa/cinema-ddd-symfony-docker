@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminMovieController extends AbstractController
 {
-    #[Route('/admin/movie/create', name: "admin_create_movie", methods: ['GET', 'POST'])]
+    #[Route('/admin/movie/create', name: 'admin_create_movie', methods: ['GET', 'POST'])]
     public function createMovie(Request $request, MovieRepository $movieRepository): Response
     {
         $createMovieCommand = new CreateMovieCommand(Uuid::uuid4());
