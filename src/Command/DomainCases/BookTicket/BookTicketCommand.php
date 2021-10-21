@@ -12,7 +12,15 @@ class BookTicketCommand
      * @EntityExist(entity="App\Domain\Booking\Entity\Session\Session")
      */
     public $sessionId;
+
+    /**
+     * @Assert\NotBlank
+     **/
     public $name;
+
+    /**
+     * @Assert\NotBlank
+     **/
     public $phone;
 
     public function __construct($sessionId)

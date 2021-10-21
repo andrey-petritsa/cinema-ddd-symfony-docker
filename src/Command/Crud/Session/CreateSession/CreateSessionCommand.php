@@ -15,8 +15,15 @@ class CreateSessionCommand
      */
     public $movieId;
 
+    /**
+     * @Assert\PositiveOrZero
+     * @Assert\NotBlank
+     **/
     public $numberOfSeats;
 
+    /**
+     * @Assert\Date()
+     **/
     public $startAt;
 
     public function __construct($sessionId)

@@ -12,7 +12,15 @@ class ChangeMovieCommand
      * @EntityExist(entity="App\Domain\Booking\Entity\Movie")
      * */
     public $id;
+
+    /**
+     * @Assert\NotBlank
+     **/
     public $name;
+
+    /**
+     * @Assert\NotBlank
+     **/
     public $duration;
 
     public function __construct($id)
