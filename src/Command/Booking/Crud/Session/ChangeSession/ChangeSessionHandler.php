@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Command\Crud\Session\ChangeSession;
+namespace App\Command\Booking\Crud\Session\ChangeSession;
 
 use App\Domain\Booking\Repository\MovieRepository;
 use App\Domain\Booking\Repository\SessionRepository;
+use DateTime;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 class ChangeSessionHandler implements MessageHandlerInterface
@@ -17,7 +18,7 @@ class ChangeSessionHandler implements MessageHandlerInterface
         $session = $this->sessionRepository->find($command->sessionId);
         $movie = $this->movieRepository->find($command->movieId);
 
-        $session->rewrite($movie, $command->numberOfSeats, new \DateTime($command->startAt));
+        $session->rewrite($movie, $command->numberOfSeats, new DateTime($command->startAt));
 
         $this->sessionRepository->save($session);
     }

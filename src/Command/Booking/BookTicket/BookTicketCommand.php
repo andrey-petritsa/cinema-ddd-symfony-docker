@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command\DomainCases\BookTicket;
+namespace App\Command\Booking\BookTicket;
 
 use Happyr\Validator\Constraint\EntityExist;
 use Symfony\Component\Validator\Constraints as Assert;

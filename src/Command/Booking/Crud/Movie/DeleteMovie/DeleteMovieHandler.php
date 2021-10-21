@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command\Crud\Movie\DeleteMovie;
+namespace App\Command\Booking\Crud\Movie\DeleteMovie;
 
 use App\Domain\Booking\Repository\MovieRepository;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;

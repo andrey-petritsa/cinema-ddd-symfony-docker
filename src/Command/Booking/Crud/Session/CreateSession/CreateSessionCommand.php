@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command\Crud\Session\CreateSession;
+namespace App\Command\Booking\Crud\Session\CreateSession;
 
 use Happyr\Validator\Constraint\EntityExist;
 use Symfony\Component\Validator\Constraints as Assert;

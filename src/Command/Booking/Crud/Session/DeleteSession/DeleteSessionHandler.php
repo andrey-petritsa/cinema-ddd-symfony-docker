@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command\Crud\Session\DeleteSession;
+namespace App\Command\Booking\Crud\Session\DeleteSession;
 
 use App\Domain\Booking\Repository\SessionRepository;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command\Crud\Movie\CreateMovie;
+namespace App\Command\Booking\Crud\Movie\CreateMovie;
 
 use Symfony\Component\Validator\Constraints as Assert;
 

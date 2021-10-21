@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command\Crud\Movie\DeleteMovie;
+namespace App\Command\Booking\Crud\Movie\DeleteMovie;
 
 use Happyr\Validator\Constraint\EntityExist;
 use Symfony\Component\Validator\Constraints as Assert;

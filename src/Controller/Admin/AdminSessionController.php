@@ -2,9 +2,9 @@
 
 namespace App\Controller\Admin;
 
-use App\Command\Crud\Session\ChangeSession\ChangeSessionCommand;
-use App\Command\Crud\Session\CreateSession\CreateSessionCommand;
-use App\Command\Crud\Session\DeleteSession\DeleteSessionCommand;
+use App\Command\Booking\Crud\Session\ChangeSession\ChangeSessionCommand;
+use App\Command\Booking\Crud\Session\CreateSession\CreateSessionCommand;
+use App\Command\Booking\Crud\Session\DeleteSession\DeleteSessionCommand;
 use App\Domain\Booking\Entity\Session\Session;
 use App\Domain\Booking\Repository\SessionRepository;
 use App\Form\SessionType;

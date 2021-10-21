@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command\Crud\Movie\ChangeMovie;
+namespace App\Command\Booking\Crud\Movie\ChangeMovie;
 
 use App\Domain\Booking\Entity\Movie;
 use Happyr\Validator\Constraint\EntityExist;

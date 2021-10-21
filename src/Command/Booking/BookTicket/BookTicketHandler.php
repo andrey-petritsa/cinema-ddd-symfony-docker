@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command\DomainCases\BookTicket;
+namespace App\Command\Booking\BookTicket;
 
 use App\Domain\Booking\Repository\SessionRepository;
 use App\Domain\Booking\TransferObject\TicketInformation;

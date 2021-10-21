@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command\Crud\Session\ChangeSession;
+namespace App\Command\Booking\Crud\Session\ChangeSession;
 
 use App\Domain\Booking\Entity\Session\Session;
 use Happyr\Validator\Constraint\EntityExist;
