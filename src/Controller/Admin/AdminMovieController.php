@@ -36,7 +36,7 @@ class AdminMovieController extends AbstractController
     #[Route('/admin/movie/change/{id}', name: 'admin_change_movie', methods: ['GET', 'POST'])]
     public function changeMovie(Request $request, Movie $movie): Response
     {
-        $changeMovieCommand = new ChangeMovieCommand($movie->getId());
+        $changeMovieCommand = ChangeMovieCommand::createByMovie($movie);
         $changeMovieForm = $this->createForm(MovieType::class, $changeMovieCommand);
         $changeMovieForm->handleRequest($request);
 

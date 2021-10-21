@@ -2,6 +2,7 @@
 
 namespace App\Command\Crud\Session\ChangeSession;
 
+use App\Domain\Booking\Entity\Session\Session;
 use Happyr\Validator\Constraint\EntityExist;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -26,12 +27,22 @@ class ChangeSessionCommand
     public $numberOfSeats;
 
     /**
-     * @Assert\Date
+     * @Assert\DateTime
      **/
     public $startAt;
 
     public function __construct($sessionId)
     {
         $this->sessionId = $sessionId;
+    }
+
+    public static function createFromSession(Session $session)
+    {
+        $changeSessionCommand = new ChangeSessionCommand($session->getId());
+        $changeSessionCommand->movieId = $session->getMovieId();
+        $changeSessionCommand->startAt = $session->getStartAt()->format('Y-m-d H:i:s');
+        $changeSessionCommand->numberOfSeats = $session->getNumberOfSeats();
+
+        return $changeSessionCommand;
     }
 }

@@ -124,6 +124,11 @@ class Session
         return $this->id;
     }
 
+    public function getMovieId(): UuidInterface
+    {
+        return $this->movie->getId();
+    }
+
     public function getMovie(): Movie
     {
         return $this->movie;

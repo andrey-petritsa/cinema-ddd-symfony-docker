@@ -51,11 +51,7 @@ class MovieController extends AbstractController
     {
         $requestBody = $request->toArray();
 
-        $changeMovieCommand = new ChangeMovieCommand($movie->getId());
-
-        $changeMovieCommand->name = $requestBody['name'];
-        $changeMovieCommand->duration = $requestBody['duration'];
-
+        $changeMovieCommand = ChangeMovieCommand::createByMovie($movie);
         $this->dispatchMessage($changeMovieCommand);
 
         return new JsonResponse($movie->getId());

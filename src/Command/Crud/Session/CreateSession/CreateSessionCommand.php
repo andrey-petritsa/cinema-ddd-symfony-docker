@@ -25,7 +25,7 @@ class CreateSessionCommand
     public $numberOfSeats;
 
     /**
-     * @Assert\Date()
+     * @Assert\DateTime
      **/
     public $startAt;
 

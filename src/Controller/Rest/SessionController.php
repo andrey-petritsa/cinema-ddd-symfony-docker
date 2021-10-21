@@ -47,11 +47,7 @@ class SessionController extends AbstractController
     {
         $requestBody = $request->toArray();
 
-        $changeSessionCommand = new ChangeSessionCommand($session->getId());
-        $changeSessionCommand->movieId = $requestBody['movieId'];
-        $changeSessionCommand->numberOfSeats = $requestBody['numberOfSeats'];
-        $changeSessionCommand->startAt = $requestBody['startAt'];
-
+        $changeSessionCommand = ChangeSessionCommand::createFromSession($session);
         $this->dispatchMessage($changeSessionCommand);
 
         return new JsonResponse($session->getId());

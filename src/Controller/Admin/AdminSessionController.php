@@ -36,10 +36,7 @@ class AdminSessionController extends AbstractController
     #[Route('/admin/session/change/{id}', name: 'admin_change_session', methods: ['GET', 'POST'])]
     public function changeSession(Request $request, Session $session): Response
     {
-        $changeSessionCommand = new ChangeSessionCommand($session->getId());
-        $changeSessionCommand->movieId = $session->getMovie();
-        $changeSessionCommand->numberOfSeats = $session->getNumberOfSeats();
-        $changeSessionCommand->startAt = $session->getStartAt()->format('Y-m-d H:i:s');
+        $changeSessionCommand = ChangeSessionCommand::createFromSession($session);
 
         $changeSessionForm = $this->createForm(SessionType::class, $changeSessionCommand);
         $changeSessionForm->handleRequest($request);
