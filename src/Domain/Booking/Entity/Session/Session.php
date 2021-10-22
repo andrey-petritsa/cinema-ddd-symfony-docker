@@ -24,8 +24,9 @@ class Session
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Domain\Booking\Entity\Movie")
+     * @ORM\JoinColumn(name="movie_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    private Movie $movie;
+    private ?Movie $movie;
 
     /**
      * @ORM\Column(type="integer")
@@ -43,20 +44,13 @@ class Session
      */
     private Collection $bookedTickets;
 
-    public function __construct(UuidInterface $id, Movie $movie, int $numberOfSeats, \DateTime $startAt)
+    public function __construct(UuidInterface $id, ?Movie $movie, int $numberOfSeats, \DateTime $startAt)
     {
         $this->id = $id;
         $this->movie = $movie;
         $this->setNumberOfSeats($numberOfSeats);
         $this->startAt = $startAt;
         $this->bookedTickets = new ArrayCollection();
-    }
-
-    public static function assertThatAmountOfSeatsCorrect(int $numberOfSeats)
-    {
-        if ($numberOfSeats <= 0) {
-            throw new \InvalidArgumentException('Количество мест не может быть 0 или меньше');
-        }
     }
 
     public function bookTicket(TicketInformation $ticketInformation)
@@ -68,13 +62,6 @@ class Session
         $this->bookedTickets->add($ticket);
     }
 
-    public function assertThatSessionIsNotFull()
-    {
-        if (empty($this->getNumberOfFreeSeats())) {
-            throw new \LogicException('Невозможно добавить билет. Сеанс заполнен');
-        }
-    }
-
     public function rewrite(Movie $movie, int $numberOfSeats, \DateTime $startAt)
     {
         $this->movie = $movie;
@@ -82,29 +69,14 @@ class Session
         $this->startAt = $startAt;
     }
 
-    public function getMovieName(): string
+    public function getId(): UuidInterface
     {
-        return $this->movie->getName();
+        return $this->id;
     }
 
     public function getNumberOfFreeSeats(): int
     {
         return $this->numberOfSeats - count($this->bookedTickets);
-    }
-
-    public function getStartAt(): \DateTime
-    {
-        return $this->startAt;
-    }
-
-    public function getEndAt(): \DateTime
-    {
-        return $this->startAt->add($this->movie->getDuration());
-    }
-
-    public function getMovieDuration(): \DateInterval
-    {
-        return $this->movie->getDuration();
     }
 
     private function setNumberOfSeats($numberOfSeats)
@@ -119,23 +91,57 @@ class Session
         return $this->numberOfSeats;
     }
 
-    public function getId(): UuidInterface
+    public function getStartAt(): \DateTime
     {
-        return $this->id;
-    }
-
-    public function getMovieId(): UuidInterface
-    {
-        return $this->movie->getId();
-    }
-
-    public function getMovie(): Movie
-    {
-        return $this->movie;
+        return $this->startAt;
     }
 
     public function getBookedTickets(): TicketCollection
     {
         return TicketCollection::fromDoctrineCollection($this->bookedTickets);
+    }
+
+    public function getMovie(): ?Movie
+    {
+        return $this->movie;
+    }
+
+    public function getMovieId(): ?UuidInterface
+    {
+        return $this->isMovieAnnounced() ? $this->movie->getId() : null;
+    }
+
+    public function getMovieName(): ?string
+    {
+        return $this->isMovieAnnounced() ? $this->movie->getName() : null;
+    }
+
+    public function getMovieEndAt(): ?\DateTime
+    {
+        return $this->isMovieAnnounced() ? $this->startAt->add($this->movie->getDuration()) : null;
+    }
+
+    public function getMovieDuration(): ?\DateInterval
+    {
+        return $this->isMovieAnnounced() ? $this->movie->getDuration() : null;
+    }
+
+    public function isMovieAnnounced(): bool
+    {
+        return !is_null($this->movie);
+    }
+
+    private function assertThatSessionIsNotFull()
+    {
+        if (empty($this->getNumberOfFreeSeats())) {
+            throw new \LogicException('Невозможно добавить билет. Сеанс заполнен');
+        }
+    }
+
+    public static function assertThatAmountOfSeatsCorrect(int $numberOfSeats)
+    {
+        if ($numberOfSeats <= 0) {
+            throw new \InvalidArgumentException('Количество мест не может быть 0 или меньше');
+        }
     }
 }
