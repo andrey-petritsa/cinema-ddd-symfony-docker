@@ -24,7 +24,7 @@ docker-compose.yml
 Запуск зависимостей и cli инструментов symfony делается через контейнер php
 `` docker-compose exec php /bin/bash whoami ``
 
-`` docker-compose exec bin/console make:controller ``
+`` docker-compose exec php bin/console make:controller ``
 
 Порт mysql проброшен с контейнера database на localhost:3306. К нему можно подключиться инструментом для работы с БД
 вроде datagrip
