@@ -4,10 +4,10 @@
 Из корневой директории проекта соберет все контейнеры, необходимые для работы приложения Установка зависимостей
 происходит следующей командой
 
-`` docker-compose exec composer install ``
+`` docker-compose exec php composer install ``
 Установит необходимые для работы проекта Composer зависимости
 
-``docker-compose exec bin/console make:migration``
+``docker-compose exec php bin/console make:migration``
 Применит миграции на вашу базу данных, которая заранее уже была создана внутри контейнера database под именем dev
 docker-compose.yml
 
