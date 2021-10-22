@@ -5,12 +5,16 @@
     </div>
 {% endfor %}
 {% for session in sessions %}
-    <li><b>Свободных мест</b> {{ session.getNumberOfFreeSeats() }}</li>
-    <li><b>Расписание</b> {{ session.startAt|date("h:i") }} - {{ session.getEndAt()|date("h:i") }}</li>
-    <li><b>Дата</b> {{ session.startAt|date("y/m/d") }} </li>
-    {# TODO сделать правильно отображение #}
-    <li><b>Хронометраж</b> {{ session.getMovieDuration()|date("h:i") }} </li>
-    <a href="{{ path('user_book_ticket', {id: session.id}) }}">Забронировать билет</a>
+    {% if not session.isMovieAnnounced() %}
+        <li>У сессии <b>{{ session.getId() }} </b>не установлен фильм!</li>
+    {% else %}
+        <li><b>Свободных мест</b> {{ session.getNumberOfFreeSeats() }}</li>
+        <li><b>Расписание</b> {{ session.startAt|date("h:i") }} - {{ session.getMovieEndAt()|date("h:i") }}</li>
+        <li><b>Дата</b> {{ session.startAt|date("y/m/d") }} </li>
+        {# TODO сделать правильно отображение #}
+        <li><b>Хронометраж</b> {{ session.getMovieDuration()|date("h:i") }} </li>
+        <a href="{{ path('user_book_ticket', {id: session.id}) }}">Забронировать билет</a>
+    {% endif %}
     <br>
     <br>
 {% endfor %}

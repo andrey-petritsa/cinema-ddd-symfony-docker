@@ -27,7 +27,7 @@ class AdminSessionController extends AbstractController
             $this->dispatchMessage($createSessionCommand);
         }
 
-        return $this->renderForm('admin/session/session.create.twig.html', [
+        return $this->renderForm('admin/session/session.create.html.twig', [
             'createSessionForm' => $createSessionForm,
             'sessions' => $sessionRepository->findAll()
         ]);
@@ -45,7 +45,7 @@ class AdminSessionController extends AbstractController
             $this->dispatchMessage($changeSessionCommand);
         }
 
-        return $this->renderForm('admin/session/session.change.twig.html', [
+        return $this->renderForm('admin/session/session.change.html.twig', [
             'changeSessionForm' => $changeSessionForm,
         ]);
     }
