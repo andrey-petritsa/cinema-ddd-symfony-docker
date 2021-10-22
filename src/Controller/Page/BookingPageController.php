@@ -13,7 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BookingPageController extends AbstractController
 {
-    //QUESTION можно ли было сделать как в макете? Форму на этой же странице
     #[Route('/', name: 'user_show_sessions', methods: ['GET'])]
     public function index(SessionRepository $sessionRepository): Response
     {
