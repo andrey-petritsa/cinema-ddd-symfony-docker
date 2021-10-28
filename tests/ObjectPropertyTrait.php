@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Tests;
+
+trait ObjectPropertyTrait
+{
+    protected function getProperties($object): array
+    {
+        $properties = [];
+        foreach ($object as $key => $value) {
+            $properties[] = $key;
+        }
+
+        return $properties;
+    }
+
+    protected function setBlankPropertiesTo(&$object)
+    {
+        foreach ($object as $key => $value) {
+            $object->$key = '';
+        }
+    }
+}
