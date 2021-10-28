@@ -10,8 +10,9 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: dev
-      MYSQL_USER: dev
-      MYSQL_PASSWORD: dev
+      #QUESTION Можно ли открывать базу от рута?
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
     ports:
       - '3306:3306'
   php:
