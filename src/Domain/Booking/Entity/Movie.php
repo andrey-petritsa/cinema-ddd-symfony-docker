@@ -27,10 +27,10 @@ class Movie
         $this->duration = $duration;
     }
 
-    public static function assertThatNameNotEmpty(string $name)
+    private static function assertThatNameNotEmpty(string $name)
     {
         if (empty($name)) {
-            throw new \InvalidArgumentException('Имя пользователя слишком короткое');
+            throw new \InvalidArgumentException('Название фильма слишком короткое');
         }
     }
 

@@ -9,7 +9,7 @@ class DeleteSessionCommand
 {
     /**
      * @Assert\NotBlank
-     * @EntityExist(entity="App\Domain\Booking\Entity\Session\Session")
+     * @EntityExist(entity="App\Domain\Booking\Entity\Session\Session", message="Не удалось найти сессию для удаления")
      */
     public $sessionId;
 

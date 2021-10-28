@@ -62,7 +62,7 @@ class Session
         $this->bookedTickets->add($ticket);
     }
 
-    public function rewrite(Movie $movie, int $numberOfSeats, \DateTime $startAt)
+    public function rewrite(?Movie $movie, int $numberOfSeats, \DateTime $startAt)
     {
         $this->movie = $movie;
         $this->setNumberOfSeats($numberOfSeats);
@@ -138,7 +138,7 @@ class Session
         }
     }
 
-    public static function assertThatAmountOfSeatsCorrect(int $numberOfSeats)
+    private static function assertThatAmountOfSeatsCorrect(int $numberOfSeats)
     {
         if ($numberOfSeats <= 0) {
             throw new \InvalidArgumentException('Количество мест не может быть 0 или меньше');

@@ -9,7 +9,10 @@ class BookTicketCommand
 {
     /**
      * @Assert\NotBlank
-     * @EntityExist(entity="App\Domain\Booking\Entity\Session\Session")
+     * @EntityExist(
+     * entity="App\Domain\Booking\Entity\Session\Session",
+     * message="Не удалось найти сессию для бронирования билета"
+     * )
      */
     public $sessionId;
 

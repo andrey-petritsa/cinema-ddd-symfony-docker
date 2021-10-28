@@ -4,6 +4,7 @@ namespace App\Command\Booking\Crud\Movie\CreateMovie;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+//TODO перенести дублирование в треиты
 class CreateMovieCommand
 {
     /**
@@ -16,8 +17,6 @@ class CreateMovieCommand
      **/
     public $name;
 
-    //QUESTION для типа DateInеerval я не нашел Constraint
-    // Нужно пользоваться самописным решением / библиотекой или есть решение лучше?
     /**
      * @Assert\NotBlank
      **/

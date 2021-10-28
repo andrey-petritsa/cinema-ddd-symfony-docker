@@ -14,7 +14,7 @@ class CreateSessionCommand
 
     /**
      * @Assert\NotBlank
-     * @EntityExist(entity="App\Domain\Booking\Entity\Movie")
+     * @EntityExist(entity="App\Domain\Booking\Entity\Movie", message="Не найден фильм для сессии")
      */
     public $movieId;
 
@@ -26,6 +26,7 @@ class CreateSessionCommand
 
     /**
      * @Assert\DateTime
+     * @Assert\NotBlank
      **/
     public $startAt;
 

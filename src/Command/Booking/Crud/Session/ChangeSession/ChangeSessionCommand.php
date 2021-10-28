@@ -10,13 +10,13 @@ class ChangeSessionCommand
 {
     /**
      * @Assert\NotBlank
-     * @EntityExist(entity="App\Domain\Booking\Entity\Session\Session")
+     * @EntityExist(entity="App\Domain\Booking\Entity\Session\Session", message="Не удалось найти сессию")
      */
     public $sessionId;
 
     /**
      * @Assert\NotBlank
-     * @EntityExist(entity="App\Domain\Booking\Entity\Movie")
+     * @EntityExist(entity="App\Domain\Booking\Entity\Movie", message="Не удалось найти фильм")
      */
     public $movieId;
 
@@ -27,6 +27,7 @@ class ChangeSessionCommand
     public $numberOfSeats;
 
     /**
+     * @Assert\NotBlank
      * @Assert\DateTime
      **/
     public $startAt;

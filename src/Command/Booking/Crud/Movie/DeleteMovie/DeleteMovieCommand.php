@@ -9,7 +9,7 @@ class DeleteMovieCommand
 {
     /**
      * @Assert\NotBlank
-     * @EntityExist(entity="App\Domain\Booking\Entity\Movie")
+     * @EntityExist(entity="App\Domain\Booking\Entity\Movie", message="Фильм не найден")
      */
     public $movieId;
 
