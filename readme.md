@@ -42,7 +42,7 @@ docker-compose.yml
 
 1. Создадим тестовую базу данных
 
-``docker-compose exec php doctrine:database:create --env=test``
+``docker-compose exec php bin/console doctrine:database:create --env=test``
 
 Обратите внимание, что новое имя базы данных будет такое же, как указано в докере, но с суффиксом _test (dev_test)
 
