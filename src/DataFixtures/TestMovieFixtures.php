@@ -20,3 +20,9 @@ class TestMovieFixtures extends Fixture
         $this->addReference(self::MOVIE_REFERENCE, $movie);
     }
 }
+
+/**QUESTION
+ *  Внутри этой фикстуры я хотел создать много фильмов и поместить их в коллекцию.
+ *  Эту коллекцию я хотел передать другой фикстуре через $this->>addReference($movies).
+ *  Я так понимаю такой подход не практикуется, и addReference используется только на одной сущности?
+ */
