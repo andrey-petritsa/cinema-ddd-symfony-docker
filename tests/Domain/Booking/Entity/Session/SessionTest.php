@@ -8,11 +8,12 @@ use App\Domain\Booking\Entity\Session\Session;
 use App\Domain\Booking\TransferObject\TicketInformation;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 class SessionTest extends TestCase
 {
-    private static $entityId;
-    private static $nowDateTime;
+    private static UuidInterface $entityId;
+    private static \DateTime $nowDateTime;
 
     public static function setUpBeforeClass(): void
     {
