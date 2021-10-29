@@ -60,9 +60,6 @@ class BookTicketCommandTest extends CommandWebTestCase
 
         $violations = $this->getValidator()->validate($command);
 
-        //QUESTION Наверное, было бы логично иметь единый конфиг заранее подготовленных сообщений о ошибках?
-        // Было бы удобно проверять сообщение о ошибке через него,
-        // и устанавливать его Constraint.message в команде
         $expectedErrorMessage = 'Не удалось найти сессию для бронирования билета';
         $this->assertPropertyIsInvalid('sessionId', $expectedErrorMessage, $violations);
     }
