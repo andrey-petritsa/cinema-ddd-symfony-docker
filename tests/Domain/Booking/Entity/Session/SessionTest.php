@@ -21,7 +21,8 @@ class SessionTest extends TestCase
         self::$nowDateTime = new \DateTime('now');
     }
 
-    public function testCantCreateSessionWithZeroNumberOfSeats()
+    /** @test */
+    public function cantCreateSessionWithZeroNumberOfSeats()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -29,7 +30,8 @@ class SessionTest extends TestCase
         $session = new Session(self::$entityId, null, $zeroNumberOfSeats, self::$nowDateTime);
     }
 
-    public function testCantCreateSessionWithNegativeNumberOfSeats()
+    /** @test */
+    public function cantCreateSessionWithNegativeNumberOfSeats()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -37,7 +39,8 @@ class SessionTest extends TestCase
         $session = new Session(self::$entityId, null, $negativeNumberOfSeats, self::$nowDateTime);
     }
 
-    public function testCantBookTicketIfSessionFull()
+    /** @test */
+    public function cantBookTicketIfSessionFull()
     {
         $this->expectException(\LogicException::class);
 
@@ -50,7 +53,8 @@ class SessionTest extends TestCase
         $session->bookTicket($ticketInformation);
     }
 
-    public function testCantRewriteSessionWithZeroSeats()
+    /** @test */
+    public function cantRewriteSessionWithZeroSeats()
     {
         $this->expectException(\LogicException::class);
 
@@ -60,7 +64,8 @@ class SessionTest extends TestCase
         $session->rewrite(null, $zeroSeats, self::$nowDateTime);
     }
 
-    public function testCantRewriteSessionWithNegativeSeats()
+    /** @test */
+    public function cantRewriteSessionWithNegativeSeats()
     {
         $this->expectException(\LogicException::class);
 
@@ -70,7 +75,8 @@ class SessionTest extends TestCase
         $session->rewrite(null, $negativeSeats, self::$nowDateTime);
     }
 
-    public function testCorrectCalculateFreeSeatsAfterBookTicket()
+    /** @test */
+    public function correctCalculateFreeSeatsAfterBookTicket()
     {
         $numberOfSeats = 5;
         $session = new Session(self::$entityId, null, $numberOfSeats, self::$nowDateTime);
@@ -82,7 +88,8 @@ class SessionTest extends TestCase
         $this->assertEquals(3, $session->getNumberOfFreeSeats());
     }
 
-    public function testSessionMovieAnnounced()
+    /** @test */
+    public function sessionMovieAnnounced()
     {
         $movie = new Movie(self::$entityId, 'Девчата', new \DateInterval('PT1H1M'));
         $session = new Session(self::$entityId, $movie, 5, self::$nowDateTime);
@@ -90,7 +97,8 @@ class SessionTest extends TestCase
         self::assertTrue($session->isMovieAnnounced());
     }
 
-    public function testSessionMovieNotAnnounced()
+    /** @test */
+    public function sessionMovieNotAnnounced()
     {
         $movie = null;
         $session = new Session(self::$entityId, $movie, 5, self::$nowDateTime);
@@ -98,7 +106,8 @@ class SessionTest extends TestCase
         self::assertFalse($session->isMovieAnnounced());
     }
 
-    public function testInformationAboutMovieNullIfMovieNotAnnounced()
+    /** @test */
+    public function informationAboutMovieNullIfMovieNotAnnounced()
     {
         $movie = null;
         $session = new Session(self::$entityId, $movie, 5, self::$nowDateTime);
@@ -110,7 +119,8 @@ class SessionTest extends TestCase
         self::assertNull($session->getMovieDuration());
     }
 
-    public function testInformationAboutMovieNotNullIfMovieAnnounced()
+    /** @test */
+    public function informationAboutMovieNotNullIfMovieAnnounced()
     {
         $movie = new Movie(self::$entityId, 'Девчата', new \DateInterval('PT1H1M'));
         $session = new Session(self::$entityId, $movie, 5, self::$nowDateTime);
@@ -122,7 +132,8 @@ class SessionTest extends TestCase
         self::assertNotNull($session->getMovieDuration());
     }
 
-    public function testBookedTicketsIsTicketCollection()
+    /** @test */
+    public function bookedTicketsIsTicketCollection()
     {
         $session = new Session(self::$entityId, null, 5, self::$nowDateTime);
         self::assertInstanceOf(TicketCollection::class, $session->getBookedTickets());
