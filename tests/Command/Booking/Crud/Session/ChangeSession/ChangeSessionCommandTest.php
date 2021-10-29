@@ -3,6 +3,7 @@
 namespace App\Tests\Command\Booking\Crud\Session\ChangeSession;
 
 use App\Command\Booking\Crud\Session\ChangeSession\ChangeSessionCommand;
+use App\DataFixtures\TestSessionFixtures;
 use App\Domain\Booking\Entity\Movie;
 use App\Domain\Booking\Entity\Session\Session;
 use App\Tests\Command\Booking\Crud\Session\SessionTestTrait;
@@ -33,6 +34,7 @@ class ChangeSessionCommandTest extends CommandWebTestCase
     /** @test */
     public function commandWithExistedSessionValid()
     {
+        $this->getDatabaseTool()->loadFixtures([TestSessionFixtures::class]);
         $existedSession = $this->getRandomEntity(Session::class);
         $command = new ChangeSessionCommand($existedSession->getId());
 
@@ -103,6 +105,7 @@ class ChangeSessionCommandTest extends CommandWebTestCase
     /** @test */
     public function commandWithExistedMovieValid()
     {
+        $this->getDatabaseTool()->loadFixtures([TestSessionFixtures::class]);
         $existedMovie = $this->getRandomEntity(Movie::class);
         $commandWithMovie = new ChangeSessionCommand(Uuid::uuid4());
         $commandWithMovie->movieId = $existedMovie->getId();

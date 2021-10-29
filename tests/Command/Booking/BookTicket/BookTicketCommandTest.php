@@ -3,6 +3,7 @@
 namespace App\Tests\Command\Booking\BookTicket;
 
 use App\Command\Booking\BookTicket\BookTicketCommand;
+use App\DataFixtures\TestSessionFixtures;
 use App\Domain\Booking\Entity\Session\Session;
 use App\Tests\CommandWebTestCase;
 use App\Tests\ObjectPropertyTrait;
@@ -42,6 +43,7 @@ class BookTicketCommandTest extends CommandWebTestCase
     /** @test */
     public function commandWithExistedSessionValid()
     {
+        $this->getDatabaseTool()->loadFixtures([TestSessionFixtures::class]);
         $command = new BookTicketCommand(Uuid::uuid4());
         $existedSession = $this->getRandomEntity(Session::class);
         $command->sessionId = $existedSession;

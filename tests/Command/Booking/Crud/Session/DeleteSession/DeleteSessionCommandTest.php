@@ -3,6 +3,7 @@
 namespace App\Tests\Command\Booking\Crud\Session\DeleteSession;
 
 use App\Command\Booking\Crud\Session\DeleteSession\DeleteSessionCommand;
+use App\DataFixtures\TestSessionFixtures;
 use App\Domain\Booking\Entity\Session\Session;
 use App\Tests\CommandWebTestCase;
 use App\Tests\ViolationAssertTrait;
@@ -26,6 +27,7 @@ class DeleteSessionCommandTest extends CommandWebTestCase
     /** @test */
     public function commandWithExistedSessionValid()
     {
+        $this->getDatabaseTool()->loadFixtures([TestSessionFixtures::class]);
         $existedSession = $this->getRandomEntity(Session::class);
         $command = new DeleteSessionCommand($existedSession->getId());
 
