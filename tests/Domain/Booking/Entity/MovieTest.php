@@ -8,7 +8,8 @@ use Ramsey\Uuid\Uuid;
 
 class MovieTest extends TestCase
 {
-    public function testThatCantCreateMovieWithEmptyValue()
+    /** @test */
+    public function cantCreateMovieWithEmptyValue()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -17,7 +18,8 @@ class MovieTest extends TestCase
         $movie = new Movie(Uuid::uuid4(), $emptyMovieName, $movieDuration);
     }
 
-    public function testThatCantRewriteMovieNameToEmptyValue()
+    /** @test */
+    public function cantRewriteMovieNameToEmptyValue()
     {
         $this->expectException(\InvalidArgumentException::class);
 
