@@ -4,11 +4,11 @@ namespace App\Tests;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectRepository;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-abstract class CommandWebTestCase extends WebTestCase
+abstract class CommandWebTestCase extends KernelTestCase
 {
     public static function setUpBeforeClass(): void
     {
