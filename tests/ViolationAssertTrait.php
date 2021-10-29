@@ -9,11 +9,10 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 trait ViolationAssertTrait
 {
     protected function assertPropertyIsInvalid(
-        string                           $propertyPath,
-        string                           $expectedErrorMessage,
+        string $propertyPath,
+        string $expectedErrorMessage,
         ConstraintViolationListInterface $violations
-    ): void
-    {
+    ): void {
         $actualErrorMessage = self::findViolationMessagesByProperty($propertyPath, $violations);
 
         Assert::assertContains(
@@ -38,10 +37,9 @@ trait ViolationAssertTrait
      * @return string[]
      */
     private static function findViolationMessagesByProperty(
-        string                           $propertyPath,
+        string $propertyPath,
         ConstraintViolationListInterface $violations
-    ): array
-    {
+    ): array {
         $violationMessages = [];
 
         foreach ($violations as $violation) {

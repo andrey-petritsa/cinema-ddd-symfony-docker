@@ -11,9 +11,8 @@ trait MovieTestTrait
 {
     private function assertEqualsCommandWithMovie(
         CreateMovieCommand|ChangeMovieCommand $command,
-        Movie                                 $movie
-    )
-    {
+        Movie $movie
+    ) {
         Assert::assertEquals($command->movieId, $movie->getId());
         Assert::assertEquals($command->name, $movie->getName());
         Assert::assertEquals(new \DateInterval($command->duration), $movie->getDuration());
