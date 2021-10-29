@@ -29,7 +29,7 @@ abstract class CommandWebTestCase extends KernelTestCase
         return self::getContainer()->get(EntityManagerInterface::class);
     }
 
-    final protected function getRandomEntity(string $entityClass)
+    final protected function getOneEntity(string $entityClass)
     {
         return $this->getRepository($entityClass)->findOneBy([]);
     }

@@ -44,7 +44,7 @@ class CreateMovieCommandTest extends CommandWebTestCase
         $command = new CreateMovieCommand(Uuid::uuid4());
         $command->name = 'Андрей';
         $command->duration = 'PT2H1M';
-        $command->movieId = $this->getRandomEntity(Movie::class)->getId();
+        $command->movieId = $this->getOneEntity(Movie::class)->getId();
 
         return $command;
     }

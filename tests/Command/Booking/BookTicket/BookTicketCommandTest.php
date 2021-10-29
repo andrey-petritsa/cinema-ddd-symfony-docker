@@ -45,7 +45,7 @@ class BookTicketCommandTest extends CommandWebTestCase
     {
         $this->getDatabaseTool()->loadFixtures([TestSessionFixtures::class]);
         $command = new BookTicketCommand(Uuid::uuid4());
-        $existedSession = $this->getRandomEntity(Session::class);
+        $existedSession = $this->getOneEntity(Session::class);
         $command->sessionId = $existedSession;
 
         $violations = $this->getValidator()->validate($command);
@@ -71,7 +71,7 @@ class BookTicketCommandTest extends CommandWebTestCase
         $command = new BookTicketCommand(Uuid::uuid4());
         $command->name = 'Андрей';
         $command->phone = '735735';
-        $command->sessionId = $this->getRandomEntity(Session::class);
+        $command->sessionId = $this->getOneEntity(Session::class);
 
         return $command;
     }

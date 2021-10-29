@@ -3,6 +3,8 @@
 namespace App\Tests\Command\Booking\BookTicket;
 
 use App\Command\Booking\BookTicket\BookTicketCommand;
+use App\DataFixtures\SessionWithNoSeats;
+use App\DataFixtures\SessionWithOneSeat;
 use App\Domain\Booking\Entity\Session\Session;
 use App\Tests\CommandWebTestCase;
 
@@ -11,7 +13,8 @@ class BookTicketHandlerTest extends CommandWebTestCase
     /** @test */
     public function afterHandleSessionSeatsDecrease()
     {
-        $oneSeatSession = $this->getSessionWithOneSeat();
+        $this->getDatabaseTool()->loadFixtures([SessionWithOneSeat::class]);
+        $oneSeatSession = $this->getOneEntity(Session::class);
         $command = $this->getBookTicketCommand($oneSeatSession->getId());
 
         $this->getMessageBus()->dispatch($command);
@@ -22,10 +25,11 @@ class BookTicketHandlerTest extends CommandWebTestCase
     /** @test */
     public function afterHandleFullSessionGetException()
     {
+        $this->getDatabaseTool()->loadFixtures([SessionWithOneSeat::class]);
         $this->expectExceptionMessage('Невозможно добавить билет. Сеанс заполнен');
 
-        $existedSession = $this->getSessionWithOneSeat();
-        $command = $this->getBookTicketCommand($existedSession->getId());
+        $zeroSeatsSession = $this->getOneEntity(Session::class);
+        $command = $this->getBookTicketCommand($zeroSeatsSession->getId());
 
         $this->getMessageBus()->dispatch($command);
         $this->getMessageBus()->dispatch($command);

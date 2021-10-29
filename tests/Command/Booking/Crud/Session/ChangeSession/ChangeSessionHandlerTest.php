@@ -3,6 +3,7 @@
 namespace App\Tests\Command\Booking\Crud\Session\ChangeSession;
 
 use App\Command\Booking\Crud\Session\ChangeSession\ChangeSessionCommand;
+use App\DataFixtures\TestSessionFixtures;
 use App\Domain\Booking\Entity\Movie;
 use App\Domain\Booking\Entity\Session\Session;
 use App\Tests\Command\Booking\Crud\Session\SessionTestTrait;
@@ -15,8 +16,9 @@ class ChangeSessionHandlerTest extends CommandWebTestCase
     /** @test */
     public function changeSessionHandle()
     {
-        $existedSession = $this->getRandomEntity(Session::class);
-        $existedMovie = $this->getRandomEntity(Movie::class);
+        $this->getDatabaseTool()->loadFixtures([TestSessionFixtures::class]);
+        $existedSession = $this->getOneEntity(Session::class);
+        $existedMovie = $this->getOneEntity(Movie::class);
 
         $changeSessionCommand = new ChangeSessionCommand($existedSession->getId());
         $changeSessionCommand->movieId = $existedMovie->getId();

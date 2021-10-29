@@ -35,7 +35,7 @@ class ChangeSessionCommandTest extends CommandWebTestCase
     public function commandWithExistedSessionValid()
     {
         $this->getDatabaseTool()->loadFixtures([TestSessionFixtures::class]);
-        $existedSession = $this->getRandomEntity(Session::class);
+        $existedSession = $this->getOneEntity(Session::class);
         $command = new ChangeSessionCommand($existedSession->getId());
 
         $violations = $this->getValidator()->validate($command);
@@ -106,7 +106,7 @@ class ChangeSessionCommandTest extends CommandWebTestCase
     public function commandWithExistedMovieValid()
     {
         $this->getDatabaseTool()->loadFixtures([TestSessionFixtures::class]);
-        $existedMovie = $this->getRandomEntity(Movie::class);
+        $existedMovie = $this->getOneEntity(Movie::class);
         $commandWithMovie = new ChangeSessionCommand(Uuid::uuid4());
         $commandWithMovie->movieId = $existedMovie->getId();
 
@@ -130,7 +130,7 @@ class ChangeSessionCommandTest extends CommandWebTestCase
     /** @test */
     public function commandFromFabricSameAsSession()
     {
-        $session = $this->getRandomEntity(Session::class);
+        $session = $this->getOneEntity(Session::class);
 
         $changeSessionCommand = ChangeSessionCommand::createFromSession($session);
 

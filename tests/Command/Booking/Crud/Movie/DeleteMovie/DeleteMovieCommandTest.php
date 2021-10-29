@@ -26,7 +26,7 @@ class DeleteMovieCommandTest extends CommandWebTestCase
     /** @test */
     public function commandWithMovieValid()
     {
-        $existedMovie = $this->getRandomEntity(Movie::class);
+        $existedMovie = $this->getOneEntity(Movie::class);
         $deleteMovieCommand = new DeleteMovieCommand($existedMovie->getId());
 
         $violations = $this->getValidator()->validate($deleteMovieCommand);

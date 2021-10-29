@@ -33,7 +33,7 @@ class ChangeMovieCommandTest extends CommandWebTestCase
     {
         $changeMovieCommand = new ChangeMovieCommand(Uuid::uuid4());
 
-        $changeMovieCommand->movieId = $this->getRandomEntity(Movie::class)->getId();
+        $changeMovieCommand->movieId = $this->getOneEntity(Movie::class)->getId();
         $violations = $this->getValidator()->validate($changeMovieCommand);
 
         $this->assertPropertyIsValid('movieId', $violations);
@@ -77,7 +77,7 @@ class ChangeMovieCommandTest extends CommandWebTestCase
     private function makeCompleteCommand()
     {
         $completeCommand = new ChangeMovieCommand(Uuid::uuid4());
-        $completeCommand->movieId = $this->getRandomEntity(Movie::class)->getId();
+        $completeCommand->movieId = $this->getOneEntity(Movie::class)->getId();
         $completeCommand->duration = 'PT2H1M';
         $completeCommand->name = 'Девчата';
 

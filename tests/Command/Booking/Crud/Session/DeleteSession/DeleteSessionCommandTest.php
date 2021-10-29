@@ -28,7 +28,7 @@ class DeleteSessionCommandTest extends CommandWebTestCase
     public function commandWithExistedSessionValid()
     {
         $this->getDatabaseTool()->loadFixtures([TestSessionFixtures::class]);
-        $existedSession = $this->getRandomEntity(Session::class);
+        $existedSession = $this->getOneEntity(Session::class);
         $command = new DeleteSessionCommand($existedSession->getId());
 
         $violations = $this->getValidator()->validate($command);

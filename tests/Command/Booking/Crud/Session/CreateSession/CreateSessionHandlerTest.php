@@ -3,6 +3,7 @@
 namespace App\Tests\Command\Booking\Crud\Session\CreateSession;
 
 use App\Command\Booking\Crud\Session\CreateSession\CreateSessionCommand;
+use App\DataFixtures\TestSessionFixtures;
 use App\Domain\Booking\Entity\Movie;
 use App\Domain\Booking\Entity\Session\Session;
 use App\Tests\Command\Booking\Crud\Session\SessionTestTrait;
@@ -14,9 +15,10 @@ class CreateSessionHandlerTest extends CommandWebTestCase
     use SessionTestTrait;
 
     /** @test */
-    public function commandToCreateMovieHandled()
+    public function commandToCreateSessionHandled()
     {
-        $existedMovie = $this->getRandomEntity(Movie::class);
+        $this->getDatabaseTool()->loadFixtures([TestSessionFixtures::class]);
+        $existedMovie = $this->getOneEntity(Movie::class);
 
         $createSessionCommand = new CreateSessionCommand(Uuid::uuid4());
         $createSessionCommand->startAt = '2021-02-02 16:15:00';
