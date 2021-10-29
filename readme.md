@@ -75,4 +75,4 @@ Run, то убедитесь, что у вас правильно настрое
 
 Если вы хотите запустить функциональные тесты, то наберите команду
 
-``docker-compose exec php ./vendor/bin/phpunit --testsuite Unit``
+``docker-compose exec php ./vendor/bin/phpunit --testsuite Functional``
