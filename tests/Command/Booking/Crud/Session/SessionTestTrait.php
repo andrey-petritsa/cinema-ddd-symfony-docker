@@ -11,9 +11,8 @@ trait SessionTestTrait
 {
     private function assertEqualsCommandWithSession(
         CreateSessionCommand|ChangeSessionCommand $command,
-        Session                                   $session
-    )
-    {
+        Session $session
+    ) {
         Assert::assertEquals($command->sessionId, $session->getId());
         Assert::assertEquals(new \DateTime($command->startAt), $session->getStartAt());
         Assert::assertEquals($command->movieId, $session->getMovieId());

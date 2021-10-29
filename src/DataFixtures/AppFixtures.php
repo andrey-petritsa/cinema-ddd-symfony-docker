@@ -28,7 +28,7 @@ class AppFixtures extends Fixture
 
         $entities = array_merge(...$entities);
 
-        array_walk($entities, fn($entity) => $manager->persist($entity));
+        array_walk($entities, fn ($entity) => $manager->persist($entity));
         $manager->flush();
     }
 }

@@ -20,7 +20,7 @@ class SessionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $movies = $this->movieRepository->findAll();
-        $movieChoices = array_map(static fn(Movie $movie) => [$movie->getName() => $movie->getId()], $movies);
+        $movieChoices = array_map(static fn (Movie $movie) => [$movie->getName() => $movie->getId()], $movies);
         $movieChoices = array_merge(...$movieChoices);
 
         $builder
@@ -33,6 +33,7 @@ class SessionType extends AbstractType
                 'input' => 'string',
                 'input_format' => 'Y-m-d H:i:s'
             ])
-            ->add('save', SubmitType::class);
+            ->add('save', SubmitType::class)
+        ;
     }
 }
