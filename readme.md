@@ -67,4 +67,12 @@ Run, то убедитесь, что у вас правильно настрое
 
 Если вы хотите запустить тесты из консоли, то наберите команду
 
-``docker-compose exec php ./vendor/bin/phpunit`
+``docker-compose exec php ./vendor/bin/phpunit``
+
+Если вы хотите запустить юнит тесты, то наберите команду
+
+``docker-compose exec php ./vendor/bin/phpunit --testsuite Unit ``
+
+Если вы хотите запустить функциональные тесты, то наберите команду
+
+``docker-compose exec php ./vendor/bin/phpunit --testsuite Unit``
