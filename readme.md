@@ -42,9 +42,13 @@ docker-compose.yml
 
 ``docker-compose exec php bin/console doctrine:database:create --env=test``
 
+2. Применим к ней миграции
+
+``docker-compose exec php bin/console doctrine:migrations:migrate -n --env=test``
+
 Обратите внимание, что новое имя базы данных будет такое же, как указано в докере, но с суффиксом _test (dev_test)
 
-2. Установим фикстуры
+3. Установим фикстуры
 
 ``docker-compose exec php bin/console doctrine:fixtures:load --env=test``
 
